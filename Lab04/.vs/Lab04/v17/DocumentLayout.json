@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Downloads\\Lab04\\Lab04\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{20BF1287-275B-48E3-B355-7E5CB29090E0}|Bai1\\Bai1.csproj|c:\\users\\asus\\downloads\\lab04\\lab04\\bai1\\form_bai_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20BF1287-275B-48E3-B355-7E5CB29090E0}|Bai1\\Bai1.csproj|solutionrelative:bai1\\form_bai_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form_Bai_01.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Downloads\\Lab04\\Lab04\\Bai1\\Form_Bai_01.cs",
+              "RelativeDocumentMoniker": "Bai1\\Form_Bai_01.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Downloads\\Lab04\\Lab04\\Bai1\\Form_Bai_01.cs",
+              "RelativeToolTip": "Bai1\\Form_Bai_01.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAmwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T16:00:44.573Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
