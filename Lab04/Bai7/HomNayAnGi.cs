@@ -8,7 +8,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Bai7.Model; 
+using static Bai7.Model;
+using Newtonsoft.Json.Linq;
 
 namespace Bai7
 {
@@ -16,11 +17,13 @@ namespace Bai7
     {
         private readonly HttpClient httpClient;
         private readonly string authToken;
+        private readonly string NguoiThem;
 
-        public frm_HomNayAnGi(string token)
+        public frm_HomNayAnGi(string name, string token)
         {
             InitializeComponent();
             this.authToken = token;
+            this.NguoiThem = name;
 
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://nt106.uitiot.vn");
@@ -185,6 +188,36 @@ namespace Bai7
             }
         }
 
+        private async Task XoaMonAn(string id,FoodItemControl controlRemove)
+        {
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://nt106.uitiot.vn");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+
+                try
+                {
+                    HttpResponseMessage response = await client.DeleteAsync($"/api/v1/monan/{id}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Xoá món thành công");
+
+                        controlRemove.Parent.Controls.Remove(controlRemove);
+                        controlRemove.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi xoá món","Lỗi");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi");
+                }
+            }
+        }
+
         private async Task UpdateDishesUI(FlowLayoutPanel panel, List<FoodItem> dishes)
         {
             panel.Controls.Clear();
@@ -192,9 +225,19 @@ namespace Bai7
             {
                 FoodItemControl itemControl = new FoodItemControl();
                 Image foodImage = await LoadImageAsync(dish.HinhAnh); 
-                itemControl.SetData(dish.TenMonAn, dish.Gia, dish.DiaChi, dish.NguoiDongGop, foodImage);
+                itemControl.SetData(dish.Id,dish.TenMonAn, dish.Gia, dish.DiaChi, dish.NguoiDongGop, foodImage);
+
+                bool IsMyFood = (tc_DanhSachMonAn.SelectedTab == tPage_CuaToi);
+
+                itemControl.ShowDeleteButton(IsMyFood);
+
+                itemControl.DeleteClicked += async (s, e) =>
+                {
+                    await XoaMonAn(dish.Id, itemControl);
+                };
                 panel.Controls.Add(itemControl);
             }
+
         }
 
         private void UpdatePaginationControls(PaginationInfo pagination)
@@ -216,5 +259,66 @@ namespace Bai7
         {
             return null;
         }
+
+        private void btn_ThemMon_Click(object sender, EventArgs e)
+        {
+            ThemMonAn AddFood = new ThemMonAn(NguoiThem, authToken);
+            AddFood.Show();
+        }
+
+        private async void btn_AnGi_Click(object sender, EventArgs e)
+        {
+            string apiUrl = "";
+            if (tc_DanhSachMonAn.SelectedIndex == 0)
+            {
+                apiUrl = "https://nt106.uitiot.vn/api/v1/monan/all";
+            }
+            else
+            {
+                apiUrl = "https://nt106.uitiot.vn/api/v1/monan/my-dishes";
+            }
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",authToken);
+                try
+                {
+                    var payload = new
+                    {
+                        page = 1,
+                        page_size = -1
+                    };
+
+                    string JsonString = JsonConvert.SerializeObject(payload);
+                    var content = new StringContent(JsonString, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        JObject jsonResponse = JObject.Parse(responseBody);
+
+                        var listMonAn = jsonResponse["data"].ToObject<List<FoodItem>>();
+
+                        if (listMonAn != null && listMonAn.Count > 0)
+                        {
+                            Random rnd = new Random();
+                            int index = rnd.Next(listMonAn.Count);
+                            FoodItem KetQua = listMonAn[index];
+                            frm_AnGi Angi = new frm_AnGi(KetQua);
+                            Angi.Show();
+                        }
+                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi");
+                }
+            }
+        }
+
     }
 }

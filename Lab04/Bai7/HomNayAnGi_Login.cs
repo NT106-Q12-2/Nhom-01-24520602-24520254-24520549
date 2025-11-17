@@ -57,7 +57,7 @@ namespace Bai7
                 {
                     MessageBox.Show("Đăng nhập thành công");
                     var token = response_json["access_token"].ToString();
-                    frm_HomNayAnGi homNayAnGi = new frm_HomNayAnGi(token);
+                    frm_HomNayAnGi homNayAnGi = new frm_HomNayAnGi(tb_Username.Text,token);
                     homNayAnGi.Show();
                 }
             }

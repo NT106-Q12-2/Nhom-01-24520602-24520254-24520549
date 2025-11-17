@@ -39,6 +39,8 @@
             this.tb_DiaChi = new System.Windows.Forms.TextBox();
             this.tb_HinhAnh = new System.Windows.Forms.TextBox();
             this.rtb_MoTa = new System.Windows.Forms.RichTextBox();
+            this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_Add = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_Title
@@ -62,7 +64,7 @@
             this.lbl_TenMA.Location = new System.Drawing.Point(49, 150);
             this.lbl_TenMA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_TenMA.Name = "lbl_TenMA";
-            this.lbl_TenMA.Size = new System.Drawing.Size(132, 27);
+            this.lbl_TenMA.Size = new System.Drawing.Size(83, 19);
             this.lbl_TenMA.TabIndex = 1;
             this.lbl_TenMA.Text = "Tên món ăn:";
             // 
@@ -73,7 +75,7 @@
             this.lbl_Gia.Location = new System.Drawing.Point(49, 200);
             this.lbl_Gia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Gia.Name = "lbl_Gia";
-            this.lbl_Gia.Size = new System.Drawing.Size(52, 27);
+            this.lbl_Gia.Size = new System.Drawing.Size(33, 19);
             this.lbl_Gia.TabIndex = 2;
             this.lbl_Gia.Text = "Giá:";
             // 
@@ -84,7 +86,7 @@
             this.lbl_DiaChi.Location = new System.Drawing.Point(49, 250);
             this.lbl_DiaChi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_DiaChi.Name = "lbl_DiaChi";
-            this.lbl_DiaChi.Size = new System.Drawing.Size(87, 27);
+            this.lbl_DiaChi.Size = new System.Drawing.Size(54, 19);
             this.lbl_DiaChi.TabIndex = 3;
             this.lbl_DiaChi.Text = "Địa chỉ:";
             // 
@@ -95,7 +97,7 @@
             this.lbl_HinhAnh.Location = new System.Drawing.Point(49, 300);
             this.lbl_HinhAnh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_HinhAnh.Name = "lbl_HinhAnh";
-            this.lbl_HinhAnh.Size = new System.Drawing.Size(106, 27);
+            this.lbl_HinhAnh.Size = new System.Drawing.Size(65, 19);
             this.lbl_HinhAnh.TabIndex = 4;
             this.lbl_HinhAnh.Text = "Hình ảnh:";
             // 
@@ -106,7 +108,7 @@
             this.lbl_MoTa.Location = new System.Drawing.Point(49, 350);
             this.lbl_MoTa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_MoTa.Name = "lbl_MoTa";
-            this.lbl_MoTa.Size = new System.Drawing.Size(75, 27);
+            this.lbl_MoTa.Size = new System.Drawing.Size(49, 19);
             this.lbl_MoTa.TabIndex = 5;
             this.lbl_MoTa.Text = "Mô tả:";
             // 
@@ -114,28 +116,28 @@
             // 
             this.tb_TenMonAn.Location = new System.Drawing.Point(201, 147);
             this.tb_TenMonAn.Name = "tb_TenMonAn";
-            this.tb_TenMonAn.Size = new System.Drawing.Size(360, 30);
+            this.tb_TenMonAn.Size = new System.Drawing.Size(360, 23);
             this.tb_TenMonAn.TabIndex = 6;
             // 
             // tb_Gia
             // 
             this.tb_Gia.Location = new System.Drawing.Point(201, 197);
             this.tb_Gia.Name = "tb_Gia";
-            this.tb_Gia.Size = new System.Drawing.Size(360, 30);
+            this.tb_Gia.Size = new System.Drawing.Size(360, 23);
             this.tb_Gia.TabIndex = 7;
             // 
             // tb_DiaChi
             // 
             this.tb_DiaChi.Location = new System.Drawing.Point(201, 247);
             this.tb_DiaChi.Name = "tb_DiaChi";
-            this.tb_DiaChi.Size = new System.Drawing.Size(360, 30);
+            this.tb_DiaChi.Size = new System.Drawing.Size(360, 23);
             this.tb_DiaChi.TabIndex = 8;
             // 
             // tb_HinhAnh
             // 
             this.tb_HinhAnh.Location = new System.Drawing.Point(201, 297);
             this.tb_HinhAnh.Name = "tb_HinhAnh";
-            this.tb_HinhAnh.Size = new System.Drawing.Size(360, 30);
+            this.tb_HinhAnh.Size = new System.Drawing.Size(360, 23);
             this.tb_HinhAnh.TabIndex = 9;
             // 
             // rtb_MoTa
@@ -146,12 +148,34 @@
             this.rtb_MoTa.TabIndex = 10;
             this.rtb_MoTa.Text = "";
             // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(353, 567);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(101, 35);
+            this.btn_Clear.TabIndex = 11;
+            this.btn_Clear.Text = "Clear";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            // 
+            // btn_Add
+            // 
+            this.btn_Add.Location = new System.Drawing.Point(460, 567);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(101, 35);
+            this.btn_Add.TabIndex = 12;
+            this.btn_Add.Text = "Thêm";
+            this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            // 
             // ThemMonAn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(627, 587);
+            this.ClientSize = new System.Drawing.Size(627, 609);
+            this.Controls.Add(this.btn_Add);
+            this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.rtb_MoTa);
             this.Controls.Add(this.tb_HinhAnh);
             this.Controls.Add(this.tb_DiaChi);
@@ -185,5 +209,7 @@
         private System.Windows.Forms.TextBox tb_DiaChi;
         private System.Windows.Forms.TextBox tb_HinhAnh;
         private System.Windows.Forms.RichTextBox rtb_MoTa;
+        private System.Windows.Forms.Button btn_Clear;
+        private System.Windows.Forms.Button btn_Add;
     }
 }
