@@ -63,7 +63,7 @@
             // lbl_Password
             // 
             this.lbl_Password.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Password.Location = new System.Drawing.Point(35, 209);
+            this.lbl_Password.Location = new System.Drawing.Point(35, 185);
             this.lbl_Password.Name = "lbl_Password";
             this.lbl_Password.Size = new System.Drawing.Size(122, 33);
             this.lbl_Password.TabIndex = 2;
@@ -73,9 +73,9 @@
             // lbl_NewAccount
             // 
             this.lbl_NewAccount.AutoSize = true;
-            this.lbl_NewAccount.Location = new System.Drawing.Point(160, 293);
+            this.lbl_NewAccount.Location = new System.Drawing.Point(174, 241);
             this.lbl_NewAccount.Name = "lbl_NewAccount";
-            this.lbl_NewAccount.Size = new System.Drawing.Size(235, 23);
+            this.lbl_NewAccount.Size = new System.Drawing.Size(200, 20);
             this.lbl_NewAccount.TabIndex = 3;
             this.lbl_NewAccount.Text = "Don\'t have an account yet?";
             // 
@@ -83,42 +83,43 @@
             // 
             this.lbl_SignUp.AutoSize = true;
             this.lbl_SignUp.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lbl_SignUp.Location = new System.Drawing.Point(401, 293);
+            this.lbl_SignUp.Location = new System.Drawing.Point(430, 241);
             this.lbl_SignUp.Name = "lbl_SignUp";
-            this.lbl_SignUp.Size = new System.Drawing.Size(74, 23);
+            this.lbl_SignUp.Size = new System.Drawing.Size(63, 20);
             this.lbl_SignUp.TabIndex = 4;
             this.lbl_SignUp.Text = "Sign up";
             // 
             // btn_Login
             // 
             this.btn_Login.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Login.Location = new System.Drawing.Point(513, 136);
+            this.btn_Login.Location = new System.Drawing.Point(499, 136);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(101, 103);
+            this.btn_Login.Size = new System.Drawing.Size(144, 76);
             this.btn_Login.TabIndex = 5;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
             // tb_Username
             // 
             this.tb_Username.Location = new System.Drawing.Point(178, 136);
             this.tb_Username.Name = "tb_Username";
-            this.tb_Username.Size = new System.Drawing.Size(315, 30);
+            this.tb_Username.Size = new System.Drawing.Size(315, 27);
             this.tb_Username.TabIndex = 6;
             // 
             // tb_Password
             // 
-            this.tb_Password.Location = new System.Drawing.Point(178, 209);
+            this.tb_Password.Location = new System.Drawing.Point(178, 185);
             this.tb_Password.Name = "tb_Password";
-            this.tb_Password.Size = new System.Drawing.Size(315, 30);
+            this.tb_Password.Size = new System.Drawing.Size(315, 27);
             this.tb_Password.TabIndex = 7;
             // 
             // frm_HomNayAnGi_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(655, 351);
+            this.ClientSize = new System.Drawing.Size(655, 305);
             this.Controls.Add(this.tb_Password);
             this.Controls.Add(this.tb_Username);
             this.Controls.Add(this.btn_Login);

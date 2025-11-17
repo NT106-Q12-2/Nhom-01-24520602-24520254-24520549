@@ -111,13 +111,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <None Include="packages.config" />
-=======
     <EmbeddedResource Include="ThemMonAn.resx">
       <DependentUpon>ThemMonAn.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> 5f7c959f94447b3beb5d74a824742bcac71e067f
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
