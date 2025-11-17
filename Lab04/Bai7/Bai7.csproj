@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnGi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnGi.Designer.cs">
+      <DependentUpon>AnGi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FoodItemControl.Designer.cs">
+      <DependentUpon>FoodItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomNayAnGi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomNayAnGi.Designer.cs">
+      <DependentUpon>HomNayAnGi.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomNayAnGi_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +84,15 @@
     <Compile Include="ThemMonAn.Designer.cs">
       <DependentUpon>ThemMonAn.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AnGi.resx">
+      <DependentUpon>AnGi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodItemControl.resx">
+      <DependentUpon>FoodItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomNayAnGi.resx">
+      <DependentUpon>HomNayAnGi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HomNayAnGi_Login.resx">
       <DependentUpon>HomNayAnGi_Login.cs</DependentUpon>
     </EmbeddedResource>
