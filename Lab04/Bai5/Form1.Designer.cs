@@ -1,4 +1,4 @@
-﻿namespace Bai4
+﻿namespace Bai5
 {
     partial class Form1
     {
@@ -70,7 +70,7 @@
             this.tb_Username.Location = new System.Drawing.Point(140, 79);
             this.tb_Username.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_Username.Name = "tb_Username";
-            this.tb_Username.Size = new System.Drawing.Size(358, 30);
+            this.tb_Username.Size = new System.Drawing.Size(358, 23);
             this.tb_Username.TabIndex = 3;
             // 
             // tb_URL
@@ -78,7 +78,7 @@
             this.tb_URL.Location = new System.Drawing.Point(140, 36);
             this.tb_URL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_URL.Name = "tb_URL";
-            this.tb_URL.Size = new System.Drawing.Size(533, 30);
+            this.tb_URL.Size = new System.Drawing.Size(533, 23);
             this.tb_URL.TabIndex = 3;
             // 
             // tb_Password
@@ -86,7 +86,8 @@
             this.tb_Password.Location = new System.Drawing.Point(140, 122);
             this.tb_Password.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_Password.Name = "tb_Password";
-            this.tb_Password.Size = new System.Drawing.Size(358, 30);
+            this.tb_Password.PasswordChar = '*';
+            this.tb_Password.Size = new System.Drawing.Size(358, 23);
             this.tb_Password.TabIndex = 3;
             // 
             // rtb_Message
@@ -94,6 +95,7 @@
             this.rtb_Message.Location = new System.Drawing.Point(42, 169);
             this.rtb_Message.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rtb_Message.Name = "rtb_Message";
+            this.rtb_Message.ReadOnly = true;
             this.rtb_Message.Size = new System.Drawing.Size(631, 317);
             this.rtb_Message.TabIndex = 4;
             this.rtb_Message.Text = "";
@@ -107,10 +109,11 @@
             this.btn_Login.TabIndex = 5;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 518);
             this.Controls.Add(this.btn_Login);
