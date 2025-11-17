@@ -57,8 +57,17 @@ namespace Bai7
                 {
                     MessageBox.Show("Đăng nhập thành công");
                     var token = response_json["access_token"].ToString();
+                    frm_HomNayAnGi homNayAnGi = new frm_HomNayAnGi(token);
+                    homNayAnGi.Show();
                 }
             }
         }
+
+        private void lbl_SignUp_Click(object sender, EventArgs e)
+        {
+            frm_HomNayAnGi_SignUp nayAnGi_SignUp = new frm_HomNayAnGi_SignUp();
+            nayAnGi_SignUp.Show();
+        }
+
     }
 }

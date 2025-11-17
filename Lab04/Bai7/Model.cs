@@ -28,7 +28,7 @@ namespace Bai7
             public string TenMonAn { get; set; }
 
             [JsonProperty("gia")]
-            public int Gia { get; set; }
+            public string Gia { get; set; }
 
             [JsonProperty("hinh_anh")]
             public string HinhAnh { get; set; } // URL trang web

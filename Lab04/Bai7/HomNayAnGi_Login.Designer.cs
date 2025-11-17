@@ -75,7 +75,7 @@
             this.lbl_NewAccount.AutoSize = true;
             this.lbl_NewAccount.Location = new System.Drawing.Point(174, 241);
             this.lbl_NewAccount.Name = "lbl_NewAccount";
-            this.lbl_NewAccount.Size = new System.Drawing.Size(200, 20);
+            this.lbl_NewAccount.Size = new System.Drawing.Size(235, 23);
             this.lbl_NewAccount.TabIndex = 3;
             this.lbl_NewAccount.Text = "Don\'t have an account yet?";
             // 
@@ -85,9 +85,10 @@
             this.lbl_SignUp.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.lbl_SignUp.Location = new System.Drawing.Point(430, 241);
             this.lbl_SignUp.Name = "lbl_SignUp";
-            this.lbl_SignUp.Size = new System.Drawing.Size(63, 20);
+            this.lbl_SignUp.Size = new System.Drawing.Size(74, 23);
             this.lbl_SignUp.TabIndex = 4;
             this.lbl_SignUp.Text = "Sign up";
+            this.lbl_SignUp.Click += new System.EventHandler(this.lbl_SignUp_Click);
             // 
             // btn_Login
             // 
@@ -104,19 +105,19 @@
             // 
             this.tb_Username.Location = new System.Drawing.Point(178, 136);
             this.tb_Username.Name = "tb_Username";
-            this.tb_Username.Size = new System.Drawing.Size(315, 27);
+            this.tb_Username.Size = new System.Drawing.Size(315, 30);
             this.tb_Username.TabIndex = 6;
             // 
             // tb_Password
             // 
             this.tb_Password.Location = new System.Drawing.Point(178, 185);
             this.tb_Password.Name = "tb_Password";
-            this.tb_Password.Size = new System.Drawing.Size(315, 27);
+            this.tb_Password.Size = new System.Drawing.Size(315, 30);
             this.tb_Password.TabIndex = 7;
             // 
             // frm_HomNayAnGi_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(655, 305);

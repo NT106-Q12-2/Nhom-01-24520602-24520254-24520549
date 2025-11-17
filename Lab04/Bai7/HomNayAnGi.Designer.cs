@@ -71,7 +71,6 @@
             this.btn_AnGi.TabIndex = 1;
             this.btn_AnGi.Text = "Ăn gì giờ?";
             this.btn_AnGi.UseVisualStyleBackColor = false;
-            this.btn_AnGi.Click += new System.EventHandler(this.btn_AnGi_Click);
             // 
             // btn_ThemMon
             // 
@@ -95,7 +94,7 @@
             this.tc_DanhSachMonAn.SelectedIndex = 0;
             this.tc_DanhSachMonAn.Size = new System.Drawing.Size(632, 467);
             this.tc_DanhSachMonAn.TabIndex = 3;
-            this.tc_DanhSachMonAn.TabIndexChanged += new System.EventHandler(this.Tc_DanhSachMonAn_SelectedIndexChanged);
+            this.tc_DanhSachMonAn.SelectedIndexChanged += new System.EventHandler(this.Tc_DanhSachMonAn_SelectedIndexChanged);
             // 
             // tPage_All
             // 
@@ -170,7 +169,6 @@
             this.lbl_Logout.Name = "lbl_Logout";
             this.lbl_Logout.Size = new System.Drawing.Size(64, 22);
             this.lbl_Logout.Text = "Logout";
-            this.lbl_Logout.Click += new System.EventHandler(this.lbl_Logout_Click);
             // 
             // toolStripProgressBar1
             // 
@@ -205,7 +203,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(46, 28);
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // comboBox2
             // 
@@ -214,7 +211,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(46, 28);
             this.comboBox2.TabIndex = 8;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // frm_HomNayAnGi
             // 
