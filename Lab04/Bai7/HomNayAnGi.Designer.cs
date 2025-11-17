@@ -33,7 +33,9 @@
             this.btn_ThemMon = new System.Windows.Forms.Button();
             this.tc_DanhSachMonAn = new System.Windows.Forms.TabControl();
             this.tPage_All = new System.Windows.Forms.TabPage();
+            this.flp_MenuAll = new System.Windows.Forms.FlowLayoutPanel();
             this.tPage_CuaToi = new System.Windows.Forms.TabPage();
+            this.flp_Menu = new System.Windows.Forms.FlowLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_Welcome = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_Logout = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,8 +44,6 @@
             this.lbl_PageSize = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.flp_MenuAll = new System.Windows.Forms.FlowLayoutPanel();
-            this.flp_Menu = new System.Windows.Forms.FlowLayoutPanel();
             this.tc_DanhSachMonAn.SuspendLayout();
             this.tPage_All.SuspendLayout();
             this.tPage_CuaToi.SuspendLayout();
@@ -95,6 +95,7 @@
             this.tc_DanhSachMonAn.SelectedIndex = 0;
             this.tc_DanhSachMonAn.Size = new System.Drawing.Size(632, 467);
             this.tc_DanhSachMonAn.TabIndex = 3;
+            this.tc_DanhSachMonAn.TabIndexChanged += new System.EventHandler(this.Tc_DanhSachMonAn_SelectedIndexChanged);
             // 
             // tPage_All
             // 
@@ -107,6 +108,17 @@
             this.tPage_All.Text = "All";
             this.tPage_All.UseVisualStyleBackColor = true;
             // 
+            // flp_MenuAll
+            // 
+            this.flp_MenuAll.AutoScroll = true;
+            this.flp_MenuAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_MenuAll.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_MenuAll.Location = new System.Drawing.Point(3, 3);
+            this.flp_MenuAll.Name = "flp_MenuAll";
+            this.flp_MenuAll.Size = new System.Drawing.Size(618, 426);
+            this.flp_MenuAll.TabIndex = 0;
+            this.flp_MenuAll.WrapContents = false;
+            // 
             // tPage_CuaToi
             // 
             this.tPage_CuaToi.Controls.Add(this.flp_Menu);
@@ -118,6 +130,17 @@
             this.tPage_CuaToi.Text = "Tôi đóng góp";
             this.tPage_CuaToi.UseVisualStyleBackColor = true;
             // 
+            // flp_Menu
+            // 
+            this.flp_Menu.AutoScroll = true;
+            this.flp_Menu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_Menu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp_Menu.Location = new System.Drawing.Point(3, 3);
+            this.flp_Menu.Name = "flp_Menu";
+            this.flp_Menu.Size = new System.Drawing.Size(618, 426);
+            this.flp_Menu.TabIndex = 0;
+            this.flp_Menu.WrapContents = false;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -125,7 +148,7 @@
             this.lbl_Welcome,
             this.lbl_Logout,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 680);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 681);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(714, 29);
             this.statusStrip1.TabIndex = 4;
@@ -182,6 +205,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(46, 28);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // comboBox2
             // 
@@ -190,35 +214,14 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(46, 28);
             this.comboBox2.TabIndex = 8;
-            // 
-            // flp_MenuAll
-            // 
-            this.flp_MenuAll.AutoScroll = true;
-            this.flp_MenuAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_MenuAll.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_MenuAll.Location = new System.Drawing.Point(3, 3);
-            this.flp_MenuAll.Name = "flp_MenuAll";
-            this.flp_MenuAll.Size = new System.Drawing.Size(618, 426);
-            this.flp_MenuAll.TabIndex = 0;
-            this.flp_MenuAll.WrapContents = false;
-            // 
-            // flp_Menu
-            // 
-            this.flp_Menu.AutoScroll = true;
-            this.flp_Menu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_Menu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp_Menu.Location = new System.Drawing.Point(3, 3);
-            this.flp_Menu.Name = "flp_Menu";
-            this.flp_Menu.Size = new System.Drawing.Size(618, 426);
-            this.flp_Menu.TabIndex = 0;
-            this.flp_Menu.WrapContents = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // frm_HomNayAnGi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(714, 709);
+            this.ClientSize = new System.Drawing.Size(714, 710);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_PageSize);
