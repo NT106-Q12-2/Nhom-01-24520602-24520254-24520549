@@ -9,6 +9,7 @@ namespace Bai7
 {
     class Model
     {
+        // Model cho request số trang và số lượng trang
         public class ApiRequest
         {
             [JsonProperty("current")]
@@ -31,7 +32,7 @@ namespace Bai7
             public string Gia { get; set; }
 
             [JsonProperty("hinh_anh")]
-            public string HinhAnh { get; set; } // URL trang web
+            public string HinhAnh { get; set; } 
 
             [JsonProperty("dia_chi")]
             public string DiaChi { get; set; }

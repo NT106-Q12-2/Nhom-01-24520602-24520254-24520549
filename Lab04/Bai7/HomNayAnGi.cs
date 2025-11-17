@@ -2,38 +2,37 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Bai7.Model; 
+using static Bai7.Model;
 
 namespace Bai7
 {
     public partial class frm_HomNayAnGi : Form
     {
-        private readonly HttpClient httpClient;
-        private readonly string authToken;
+        private readonly HttpClient HttpClient;
+        private readonly string AuthToken;
+        private bool _Is_Changing_Pagination = false;
 
         public frm_HomNayAnGi(string token)
         {
             InitializeComponent();
-            this.authToken = token;
+            this.AuthToken = token;
 
-            httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://nt106.uitiot.vn");
-            httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", authToken);
+            HttpClient = new HttpClient();
+            HttpClient.BaseAddress = new Uri("https://nt106.uitiot.vn");
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
 
             SetupPaginationControls();
 
             // Gắn sự kiện
             this.Load += Frm_HomNayAnGi_Load;
-            this.comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed; 
-            this.comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed; 
-            this.tc_DanhSachMonAn.SelectedIndexChanged += Tc_DanhSachMonAn_SelectedIndexChanged;
+            comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
+            comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed;
+            tc_DanhSachMonAn.SelectedIndexChanged += Tc_DanhSachMonAn_SelectedIndexChanged;
         }
 
         private void SetupPaginationControls()
@@ -42,177 +41,206 @@ namespace Bai7
             comboBox2.Items.Add("10");
             comboBox2.Items.Add("15");
             comboBox2.SelectedIndex = 0;
+
             comboBox1.Items.Add("1");
             comboBox1.SelectedIndex = 0;
         }
 
         private async void Frm_HomNayAnGi_Load(object sender, EventArgs e)
         {
-            
-            comboBox1.SelectedIndexChanged -= ComboBox_Pagination_Changed;
-            comboBox2.SelectedIndexChanged -= ComboBox_Pagination_Changed;
-
-            try
-            {
-                await LoadDataForActiveTab(); 
-            }
-            finally
-            {
-                comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
-                comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed;
-            }
+            await Load_Data_For_Active_Tab();
         }
 
         private async void Tc_DanhSachMonAn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndexChanged -= ComboBox_Pagination_Changed;
-            comboBox2.SelectedIndexChanged -= ComboBox_Pagination_Changed;
-
-            try
-            {
-                comboBox1.Items.Clear();
-                comboBox1.Items.Add("1");
-                comboBox1.SelectedIndex = 0;
-
-                await LoadDataForActiveTab();
-            }
-            finally
-            {
-                comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
-                comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed;
-            }
+            await Reset_Page_And_Load_Data();
         }
 
         private async void ComboBox_Pagination_Changed(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndexChanged -= ComboBox_Pagination_Changed;
-            comboBox2.SelectedIndexChanged -= ComboBox_Pagination_Changed;
+            if (_Is_Changing_Pagination)
+                return;
+
+            await Load_Data_For_Active_Tab();
+        }
+
+        private async Task Reset_Page_And_Load_Data()
+        {
+            _Is_Changing_Pagination = true;
+
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("1");
+            comboBox1.SelectedIndex = 0;
+
+            await Load_Data_For_Active_Tab();
+
+            _Is_Changing_Pagination = false;
+        }
+
+        private async Task Load_Data_For_Active_Tab()
+        {
+            if (_Is_Changing_Pagination)
+                return;
+
+            _Is_Changing_Pagination = true;
+
+            int Current_Page = comboBox1.SelectedItem != null ? int.Parse(comboBox1.SelectedItem.ToString()) : 1;
+            int Page_Size = comboBox2.SelectedItem != null ? int.Parse(comboBox2.SelectedItem.ToString()) : 5;
 
             try
             {
-                if (sender == comboBox2)
+                if (tc_DanhSachMonAn.SelectedTab == tPage_All)
                 {
-                    comboBox1.Items.Clear();
-                    comboBox1.Items.Add("1");
-                    comboBox1.SelectedIndex = 0;
+                    await Load_All_Dishes(Current_Page, Page_Size);
                 }
-
-                await LoadDataForActiveTab();
+                else if (tc_DanhSachMonAn.SelectedTab == tPage_CuaToi)
+                {
+                    await Load_My_Dishes(Current_Page, Page_Size);
+                }
             }
             finally
             {
-                comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
-                comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed;
+                _Is_Changing_Pagination = false;
             }
         }
 
-        private async Task LoadDataForActiveTab()
+        private async Task Load_All_Dishes(int Page, int Page_Size)
         {
-            int currentPage = 1;
-            int pageSize = 5;
+            var All_Dishes = new List<FoodItem>();
+            int Current_Page = 1;
 
-            if (comboBox1.SelectedItem != null)
-                currentPage = int.Parse(comboBox1.SelectedItem.ToString());
-
-            if (comboBox2.SelectedItem != null)
-                pageSize = int.Parse(comboBox2.SelectedItem.ToString());
-
-            if (tc_DanhSachMonAn.SelectedTab == tPage_All)
-            {
-                await LoadAllDishesAsync(currentPage, pageSize);
-            }
-            else if (tc_DanhSachMonAn.SelectedTab == tPage_CuaToi)
-            {
-                await LoadMyDishesAsync(currentPage, pageSize);
-            }
-        }
-
-        private async Task LoadAllDishesAsync(int page, int pageSize)
-        {
-            var requestBody = new ApiRequest { Current = page, PageSize = pageSize };
             try
             {
-                string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
-                StringContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await httpClient.PostAsync("/api/v1/monan/all", content);
-                string jsonResponse = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
+                while (All_Dishes.Count < Page_Size)
                 {
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
-                    await UpdateDishesUI(flp_MenuAll, apiResponse.Data);
-                    UpdatePaginationControls(apiResponse.Pagination); 
+                    var Api_Request_Body = new ApiRequest { Current = Current_Page, PageSize = Page_Size };
+                    string Json_Request_Body = JsonConvert.SerializeObject(Api_Request_Body);
+                    var Content = new StringContent(Json_Request_Body, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage Response = await HttpClient.PostAsync("/api/v1/monan/all", Content);
+                    string Json_Response = await Response.Content.ReadAsStringAsync();
+
+                    if (!Response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Lỗi tải 'All': {Json_Response}", "Lỗi API");
+                        break;
+                    }
+
+                    var Api_Response = JsonConvert.DeserializeObject<ApiResponse>(Json_Response);
+
+                    if (Api_Response.Data == null || Api_Response.Data.Count == 0)
+                        break;
+
+                    All_Dishes.AddRange(Api_Response.Data);
+
+                    if (All_Dishes.Count >= Page_Size || All_Dishes.Count >= Api_Response.Pagination.Total)
+                        break;
+
+                    Current_Page++;
                 }
-                else
+
+                var Dishes_To_Show = All_Dishes.Count > Page_Size ? All_Dishes.GetRange(0, Page_Size) : All_Dishes;
+
+                await Update_Dishes_UI(flp_MenuAll, Dishes_To_Show);
+
+                Update_Pagination_Controls(new PaginationInfo
                 {
-                    MessageBox.Show($"Lỗi tải 'All': {jsonResponse}", "Lỗi API");
-                }
+                    Current = 1,
+                    PageSize = Page_Size,
+                    Total = Math.Max(Page_Size, All_Dishes.Count)
+                });
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi kết nối");
+                MessageBox.Show($"Lỗi: {Ex.Message}", "Lỗi kết nối");
             }
         }
 
-        private async Task LoadMyDishesAsync(int page, int pageSize)
+        private async Task Load_My_Dishes(int Page, int Page_Size)
         {
-            var requestBody = new ApiRequest { Current = page, PageSize = pageSize };
+            var All_Dishes = new List<FoodItem>();
+            int Current_Page = 1;
+
             try
             {
-                string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
-                StringContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await httpClient.PostAsync("/api/v1/monan/my-dishes", content);
-                string jsonResponse = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
+                while (All_Dishes.Count < Page_Size)
                 {
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
-                    await UpdateDishesUI(flp_Menu, apiResponse.Data);
-                    UpdatePaginationControls(apiResponse.Pagination); 
+                    var Api_Request_Body = new ApiRequest { Current = Current_Page, PageSize = Page_Size };
+                    string Json_Request_Body = JsonConvert.SerializeObject(Api_Request_Body);
+                    var Content = new StringContent(Json_Request_Body, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage Response = await HttpClient.PostAsync("/api/v1/monan/my-dishes", Content);
+                    string Json_Response = await Response.Content.ReadAsStringAsync();
+
+                    if (!Response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Lỗi tải 'All': {Json_Response}", "Lỗi API");
+                        break;
+                    }
+
+                    var Api_Response = JsonConvert.DeserializeObject<ApiResponse>(Json_Response);
+
+                    if (Api_Response.Data == null || Api_Response.Data.Count == 0)
+                        break;
+
+                    All_Dishes.AddRange(Api_Response.Data);
+
+                    if (All_Dishes.Count >= Page_Size || All_Dishes.Count >= Api_Response.Pagination.Total)
+                        break;
+
+                    Current_Page++;
                 }
-                else
+
+                var Dishes_To_Show = All_Dishes.Count > Page_Size ? All_Dishes.GetRange(0, Page_Size) : All_Dishes;
+
+                await Update_Dishes_UI(flp_MenuAll, Dishes_To_Show);
+
+                Update_Pagination_Controls(new PaginationInfo
                 {
-                    MessageBox.Show($"Lỗi tải 'My Dishes': {jsonResponse}", "Lỗi API");
-                    flp_Menu.Controls.Clear();
-                    UpdatePaginationControls(new PaginationInfo { Current = 1, PageSize = pageSize, Total = 0 });
-                }
+                    Current = 1,
+                    PageSize = Page_Size,
+                    Total = Math.Max(Page_Size, All_Dishes.Count)
+                });
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi kết nối");
+                MessageBox.Show($"Lỗi: {Ex.Message}", "Lỗi kết nối");
             }
         }
 
-        private async Task UpdateDishesUI(FlowLayoutPanel panel, List<FoodItem> dishes)
+        private async Task Update_Dishes_UI(FlowLayoutPanel Panel, List<FoodItem> Dishes)
         {
-            panel.Controls.Clear();
-            foreach (var dish in dishes)
+            Panel.SuspendLayout();
+            Panel.Controls.Clear();
+
+            foreach (var Dish in Dishes)
             {
-                FoodItemControl itemControl = new FoodItemControl();
-                Image foodImage = await LoadImageAsync(dish.HinhAnh); 
-                itemControl.SetData(dish.TenMonAn, dish.Gia, dish.DiaChi, dish.NguoiDongGop, foodImage);
-                panel.Controls.Add(itemControl);
+                FoodItemControl Item_Control = new FoodItemControl();
+                Image Food_Image = await LoadImageAsync(Dish.HinhAnh);
+                Item_Control.SetData(Dish.TenMonAn, Dish.Gia, Dish.DiaChi, Dish.NguoiDongGop, Food_Image);
+                Panel.Controls.Add(Item_Control);
             }
+
+            Panel.ResumeLayout();
         }
 
-        private void UpdatePaginationControls(PaginationInfo pagination)
+        private void Update_Pagination_Controls(PaginationInfo Pagination)
         {
-            int totalPages = (int)Math.Ceiling((double)pagination.Total / pagination.PageSize);
-            if (totalPages == 0) totalPages = 1;
+            comboBox1.SelectedIndexChanged -= ComboBox_Pagination_Changed;
 
-            string currentPage = (pagination.Current).ToString();
-
-            comboBox1.Items.Clear(); 
-            for (int i = 1; i <= totalPages; i++)
+            int Total_Pages = Math.Max(1, (int)Math.Ceiling((double)Pagination.Total / Pagination.PageSize));
+            comboBox1.Items.Clear();
+            for (int i = 1; i <= Total_Pages; i++)
             {
                 comboBox1.Items.Add(i.ToString());
             }
-            comboBox1.SelectedItem = currentPage; 
+
+            comboBox1.SelectedItem = Pagination.Current.ToString();
+
+            comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
         }
 
-        private async Task<Image> LoadImageAsync(string url)
+        private async Task<Image> LoadImageAsync(string Url)
         {
             return null;
         }

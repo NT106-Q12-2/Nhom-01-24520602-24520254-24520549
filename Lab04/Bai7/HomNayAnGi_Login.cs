@@ -68,6 +68,5 @@ namespace Bai7
             frm_HomNayAnGi_SignUp nayAnGi_SignUp = new frm_HomNayAnGi_SignUp();
             nayAnGi_SignUp.Show();
         }
-
     }
 }
