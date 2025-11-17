@@ -29,7 +29,7 @@ namespace Bai7
             if (string.IsNullOrEmpty(tb_Username.Text) || string.IsNullOrEmpty(tb_Password.Text) ||
                 string.IsNullOrEmpty(tb_Email.Text) || string.IsNullOrEmpty(tb_Phone.Text) || 
                 string.IsNullOrEmpty(tb_FirstName.Text) || string.IsNullOrEmpty(tb_LastName.Text) ||
-                !rtbn_Female.Checked || !rbtn_Male.Checked ||
+                (!rtbn_Female.Checked && !rbtn_Male.Checked) ||
                 cbb_Language.SelectedIndex == -1) 
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
@@ -70,8 +70,8 @@ namespace Bai7
                 else
                 {
                     MessageBox.Show("Đăng ký thành công");
-                    frm_HomNayAnGi_SignUp Sign_Up = new frm_HomNayAnGi_SignUp();
-                    Sign_Up.Show();
+                    frm_HomNayAnGi_Login Login = new frm_HomNayAnGi_Login();
+                    Login.Show();
                     this.Close();
                 }
             }

@@ -79,6 +79,8 @@
     <Compile Include="HomNayAnGi_SignUp.Designer.cs">
       <DependentUpon>HomNayAnGi_SignUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model.cs" />
+    <Compile Include="Models.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThemMonAn.cs">
