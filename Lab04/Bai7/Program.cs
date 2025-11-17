@@ -16,7 +16,7 @@ namespace Bai7
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_HomNayAnGi_Login());
+            Application.Run(new frm_HomNayAnGi());
         }
     }
 }
