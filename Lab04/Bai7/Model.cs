@@ -15,7 +15,7 @@ namespace Bai7
             [JsonProperty("current")]
             public int Current { get; set; }
 
-            [JsonProperty("pagesize")]
+            [JsonProperty("pageSize")]
             public int PageSize { get; set; }
         }
 

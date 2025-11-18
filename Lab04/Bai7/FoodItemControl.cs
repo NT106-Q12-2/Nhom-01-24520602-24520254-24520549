@@ -21,14 +21,14 @@ namespace Bai7
             InitializeComponent();
         }
 
-        public void SetData(string id,string name, string price, string address, string contributor, Image img)
+        public void SetData(string id,string name, string price, string address, string contributor, string img)
         {
             this.FoodID = id;
             lbl_Ten.Text = name;
             tb_Gia.Text = price;
             tb_DiaChi.Text = address;
             tb_DongGop.Text = contributor;
-            ptb_HinhAnh.Image = img;
+            ptb_HinhAnh.LoadAsync(img);
         }
 
         public void ShowDeleteButton(bool isVisible)
