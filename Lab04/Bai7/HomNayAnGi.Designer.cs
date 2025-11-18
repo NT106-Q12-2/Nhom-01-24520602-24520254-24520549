@@ -72,6 +72,7 @@
             this.btn_AnGi.TabIndex = 1;
             this.btn_AnGi.Text = "Ăn gì giờ?";
             this.btn_AnGi.UseVisualStyleBackColor = false;
+            this.btn_AnGi.Click += new System.EventHandler(this.btn_AnGi_Click);
             // 
             // btn_ThemMon
             // 
@@ -84,6 +85,7 @@
             this.btn_ThemMon.TabIndex = 2;
             this.btn_ThemMon.Text = "Thêm món ăn";
             this.btn_ThemMon.UseVisualStyleBackColor = false;
+            this.btn_ThemMon.Click += new System.EventHandler(this.btn_ThemMon_Click);
             // 
             // tc_DanhSachMonAn
             // 

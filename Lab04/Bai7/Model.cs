@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bai7
 {
-    class Model
+    public class Model
     {
         // Model cho request số trang và số lượng trang
         public class ApiRequest
@@ -39,7 +39,12 @@ namespace Bai7
 
             [JsonProperty("nguoi_dong_gop")]
             public string NguoiDongGop { get; set; }
+
+            [JsonProperty("mo_ta")]
+            public string MoTa { get; set; }
         }
+
+
 
         // Model cho thông tin phân trang
         public class PaginationInfo
