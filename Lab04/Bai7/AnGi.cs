@@ -22,7 +22,5 @@ namespace Bai7
             ptb_HinhAnh.LoadAsync(MonAn.HinhAnh);
             this.Text = $"Ăn {MonAn.TenMonAn} đi!!!!!";
         }
-        
-
     }
 }

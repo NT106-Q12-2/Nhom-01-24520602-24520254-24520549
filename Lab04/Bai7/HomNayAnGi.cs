@@ -1,40 +1,35 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Bai7.Model;
-using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Bai7
 {
     public partial class frm_HomNayAnGi : Form
     {
-        private readonly HttpClient httpClient;
-        private readonly string authToken;
         private readonly string NguoiThem;
+        private readonly HttpClient HttpClient;
+        private readonly string AuthToken;
 
-        public frm_HomNayAnGi(string name, string token)
+        public frm_HomNayAnGi(string token)
         {
             InitializeComponent();
-            this.authToken = token;
-            this.NguoiThem = name;
+            this.AuthToken = token;
 
             HttpClient = new HttpClient();
             HttpClient.BaseAddress = new Uri("https://nt106.uitiot.vn");
             HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
 
             SetupPaginationControls();
-
-            // Gắn sự kiện
-            this.Load += Frm_HomNayAnGi_Load;
-            comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
-            comboBox2.SelectedIndexChanged += ComboBox_Pagination_Changed;
-            tc_DanhSachMonAn.SelectedIndexChanged += Tc_DanhSachMonAn_SelectedIndexChanged;
         }
 
         private void SetupPaginationControls()
@@ -60,32 +55,20 @@ namespace Bai7
 
         private async void ComboBox_Pagination_Changed(object sender, EventArgs e)
         {
-            if (_Is_Changing_Pagination)
-                return;
-
             await Load_Data_For_Active_Tab();
         }
 
         private async Task Reset_Page_And_Load_Data()
         {
-            _Is_Changing_Pagination = true;
-
             comboBox1.Items.Clear();
             comboBox1.Items.Add("1");
             comboBox1.SelectedIndex = 0;
 
             await Load_Data_For_Active_Tab();
-
-            _Is_Changing_Pagination = false;
         }
 
         private async Task Load_Data_For_Active_Tab()
         {
-            if (_Is_Changing_Pagination)
-                return;
-
-            _Is_Changing_Pagination = true;
-
             int Current_Page = comboBox1.SelectedItem != null ? int.Parse(comboBox1.SelectedItem.ToString()) : 1;
             int Page_Size = comboBox2.SelectedItem != null ? int.Parse(comboBox2.SelectedItem.ToString()) : 5;
 
@@ -100,9 +83,9 @@ namespace Bai7
                     await Load_My_Dishes(Current_Page, Page_Size);
                 }
             }
-            finally
+            catch
             {
-                _Is_Changing_Pagination = false;
+               
             }
         }
 
@@ -160,62 +143,40 @@ namespace Bai7
 
         private async Task Load_My_Dishes(int Page, int Page_Size)
         {
-            var All_Dishes = new List<FoodItem>();
-            int Current_Page = 1;
-
+            var requestBody = new ApiRequest { Current = Page, PageSize = Page_Size };
             try
             {
-                while (All_Dishes.Count < Page_Size)
+                string jsonRequestBody = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await HttpClient.PostAsync("/api/v1/monan/my-dishes", content);
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var Api_Request_Body = new ApiRequest { Current = Current_Page, PageSize = Page_Size };
-                    string Json_Request_Body = JsonConvert.SerializeObject(Api_Request_Body);
-                    var Content = new StringContent(Json_Request_Body, Encoding.UTF8, "application/json");
-
-                    HttpResponseMessage Response = await HttpClient.PostAsync("/api/v1/monan/my-dishes", Content);
-                    string Json_Response = await Response.Content.ReadAsStringAsync();
-
-                    if (!Response.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show($"Lỗi tải 'All': {Json_Response}", "Lỗi API");
-                        break;
-                    }
-
-                    var Api_Response = JsonConvert.DeserializeObject<ApiResponse>(Json_Response);
-
-                    if (Api_Response.Data == null || Api_Response.Data.Count == 0)
-                        break;
-
-                    All_Dishes.AddRange(Api_Response.Data);
-
-                    if (All_Dishes.Count >= Page_Size || All_Dishes.Count >= Api_Response.Pagination.Total)
-                        break;
-
-                    Current_Page++;
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+                    await Update_Dishes_UI(flp_Menu, apiResponse.Data);
+                    Update_Pagination_Controls(apiResponse.Pagination);
                 }
-
-                var Dishes_To_Show = All_Dishes.Count > Page_Size ? All_Dishes.GetRange(0, Page_Size) : All_Dishes;
-
-                await Update_Dishes_UI(flp_MenuAll, Dishes_To_Show);
-
-                Update_Pagination_Controls(new PaginationInfo
+                else
                 {
-                    Current = 1,
-                    PageSize = Page_Size,
-                    Total = Math.Max(Page_Size, All_Dishes.Count)
-                });
+                    MessageBox.Show($"Lỗi tải 'My Dishes': {jsonResponse}", "Lỗi API");
+                    flp_Menu.Controls.Clear();
+                    Update_Pagination_Controls(new PaginationInfo { Current = 1, PageSize = Page_Size, Total = 0 });
+                }
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {Ex.Message}", "Lỗi kết nối");
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi kết nối");
             }
         }
 
-        private async Task XoaMonAn(string id,FoodItemControl controlRemove)
+        private async Task XoaMonAn(string id, FoodItemControl controlRemove)
         {
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://nt106.uitiot.vn");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
 
                 try
                 {
@@ -230,38 +191,41 @@ namespace Bai7
                     }
                     else
                     {
-                        MessageBox.Show("Lỗi xoá món","Lỗi");
+                        MessageBox.Show("Lỗi xoá món", "Lỗi");
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi");
                 }
             }
         }
 
-        private async Task UpdateDishesUI(FlowLayoutPanel panel, List<FoodItem> dishes)
+        private async Task Update_Dishes_UI(FlowLayoutPanel Panel, List<FoodItem> Dishes)
         {
             Panel.SuspendLayout();
             Panel.Controls.Clear();
 
             foreach (var Dish in Dishes)
             {
-                FoodItemControl itemControl = new FoodItemControl();
-                Image foodImage = await LoadImageAsync(dish.HinhAnh); 
-                itemControl.SetData(dish.Id,dish.TenMonAn, dish.Gia, dish.DiaChi, dish.NguoiDongGop, foodImage);
+                FoodItemControl Item_Control = new FoodItemControl();
+                string Food_Image = Dish.HinhAnh;
+                Item_Control.SetData(Dish.Id, Dish.TenMonAn, Dish.Gia, Dish.DiaChi, Dish.NguoiDongGop, Food_Image);
+                Panel.Controls.Add(Item_Control);
 
                 bool IsMyFood = (tc_DanhSachMonAn.SelectedTab == tPage_CuaToi);
 
-                itemControl.ShowDeleteButton(IsMyFood);
+                Item_Control.ShowDeleteButton(IsMyFood);
 
-                itemControl.DeleteClicked += async (s, e) =>
+                Item_Control.DeleteClicked += async (s, e) =>
                 {
-                    await XoaMonAn(dish.Id, itemControl);
+                    await XoaMonAn(Dish.Id, Item_Control);
                 };
-                panel.Controls.Add(itemControl);
+
+                Panel.Controls.Add(Item_Control);
             }
 
+            Panel.ResumeLayout();
         }
 
         private void Update_Pagination_Controls(PaginationInfo Pagination)
@@ -280,17 +244,6 @@ namespace Bai7
             comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
         }
 
-        private async Task<Image> LoadImageAsync(string Url)
-        {
-            return null;
-        }
-
-        private void btn_ThemMon_Click(object sender, EventArgs e)
-        {
-            ThemMonAn AddFood = new ThemMonAn(NguoiThem, authToken);
-            AddFood.Show();
-        }
-
         private async void btn_AnGi_Click(object sender, EventArgs e)
         {
             string apiUrl = "";
@@ -305,13 +258,13 @@ namespace Bai7
 
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",authToken);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AuthToken);
                 try
                 {
                     var payload = new
                     {
                         page = 1,
-                        page_size = -1
+                        page_size = 9999
                     };
 
                     string JsonString = JsonConvert.SerializeObject(payload);
@@ -335,7 +288,7 @@ namespace Bai7
                             frm_AnGi Angi = new frm_AnGi(KetQua);
                             Angi.Show();
                         }
-                        
+
                     }
                 }
                 catch (Exception ex)
@@ -345,5 +298,15 @@ namespace Bai7
             }
         }
 
+        private void btn_ThemMon_Click(object sender, EventArgs e)
+        {
+            ThemMonAn AddFood = new ThemMonAn(NguoiThem, AuthToken);
+            AddFood.Show();
+        }
+
+        private void lbl_Logout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

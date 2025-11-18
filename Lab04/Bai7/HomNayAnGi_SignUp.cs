@@ -70,8 +70,6 @@ namespace Bai7
                 else
                 {
                     MessageBox.Show("Đăng ký thành công");
-                    frm_HomNayAnGi_Login Login = new frm_HomNayAnGi_Login();
-                    Login.Show();
                     this.Close();
                 }
             }

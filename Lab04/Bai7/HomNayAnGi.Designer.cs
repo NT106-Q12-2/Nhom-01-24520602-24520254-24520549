@@ -92,7 +92,7 @@
             this.tc_DanhSachMonAn.Controls.Add(this.tPage_All);
             this.tc_DanhSachMonAn.Controls.Add(this.tPage_CuaToi);
             this.tc_DanhSachMonAn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tc_DanhSachMonAn.Location = new System.Drawing.Point(38, 134);
+            this.tc_DanhSachMonAn.Location = new System.Drawing.Point(38, 133);
             this.tc_DanhSachMonAn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tc_DanhSachMonAn.Multiline = true;
             this.tc_DanhSachMonAn.Name = "tc_DanhSachMonAn";
@@ -179,6 +179,7 @@
             this.lbl_Logout.Name = "lbl_Logout";
             this.lbl_Logout.Size = new System.Drawing.Size(58, 19);
             this.lbl_Logout.Text = "Logout";
+            this.lbl_Logout.Click += new System.EventHandler(this.lbl_Logout_Click);
             // 
             // toolStripProgressBar1
             // 
@@ -214,6 +215,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(41, 24);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // comboBox2
             // 
@@ -223,6 +225,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(41, 24);
             this.comboBox2.TabIndex = 8;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Pagination_Changed);
             // 
             // frm_HomNayAnGi
             // 
@@ -242,6 +245,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_HomNayAnGi";
             this.Text = "Hôm nay ăn gì?";
+            this.Load += new System.EventHandler(this.Frm_HomNayAnGi_Load);
             this.tc_DanhSachMonAn.ResumeLayout(false);
             this.tPage_All.ResumeLayout(false);
             this.tPage_CuaToi.ResumeLayout(false);
