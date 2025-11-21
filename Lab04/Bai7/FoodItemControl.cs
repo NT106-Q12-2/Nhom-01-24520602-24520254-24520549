@@ -21,14 +21,43 @@ namespace Bai7
             InitializeComponent();
         }
 
-        public void SetData(string id,string name, string price, string address, string contributor, string img)
+        public void SetData(string id, string name, string price, string address, string contributor, string img)
         {
             this.FoodID = id;
             lbl_Ten.Text = name;
             tb_Gia.Text = price;
             tb_DiaChi.Text = address;
             tb_DongGop.Text = contributor;
-            ptb_HinhAnh.LoadAsync(img);
+
+           
+            try
+            {
+              
+                if (string.IsNullOrWhiteSpace(img))
+                {
+                    ptb_HinhAnh.Image = null; 
+                    return;
+                }
+
+                img = img.Trim();
+
+          
+                bool isUrl = Uri.TryCreate(img, UriKind.Absolute, out Uri uriResult)
+                             && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                if (isUrl)
+                {
+                    ptb_HinhAnh.LoadAsync(img);
+                }
+                else
+                {
+                    ptb_HinhAnh.Image = null;
+                }
+            }
+            catch (Exception)
+            {
+                ptb_HinhAnh.Image = null;
+            }
         }
 
         public void ShowDeleteButton(bool isVisible)

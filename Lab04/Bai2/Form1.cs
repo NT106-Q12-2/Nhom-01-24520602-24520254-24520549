@@ -24,9 +24,9 @@ namespace Bai2
         private void btn_Download_Click(object sender, EventArgs e)
         {
             WebClient webClient = new WebClient();
-            if (string.IsNullOrEmpty(tb_URL.Text) || string.IsNullOrEmpty(tb_FileSave.Text))
+            if (string.IsNullOrEmpty(tb_URL.Text) || string.IsNullOrEmpty(tb_FileSave.Text) || !tb_FileSave.Text.Contains(".html"))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập dữ liệu hợp lệ!");
                 return;
             }
             try
