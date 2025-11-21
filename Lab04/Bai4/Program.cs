@@ -16,7 +16,7 @@ namespace Bai4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Danh_Sach_Phim());
+            Application.Run(new Dat_Ve());
         }
     }
 }
