@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bai4
 {
-    public partial class Form1 : Form
+    public partial class Dat_Ve : Form
     {
-        public Form1()
+        public Dat_Ve()
         {
             InitializeComponent();
         }
