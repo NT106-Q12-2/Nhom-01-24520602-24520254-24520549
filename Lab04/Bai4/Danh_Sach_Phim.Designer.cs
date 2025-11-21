@@ -36,6 +36,7 @@
             // 
             // flp_Danh_Sach_Phim
             // 
+            this.flp_Danh_Sach_Phim.AutoScroll = true;
             this.flp_Danh_Sach_Phim.Location = new System.Drawing.Point(12, 88);
             this.flp_Danh_Sach_Phim.Name = "flp_Danh_Sach_Phim";
             this.flp_Danh_Sach_Phim.Size = new System.Drawing.Size(713, 387);
@@ -69,6 +70,7 @@
             this.pb_TienTrinh.Name = "pb_TienTrinh";
             this.pb_TienTrinh.Size = new System.Drawing.Size(124, 23);
             this.pb_TienTrinh.TabIndex = 0;
+            this.pb_TienTrinh.Visible = false;
             // 
             // Danh_Sach_Phim
             // 

@@ -12,11 +12,11 @@ namespace Bai4
 {
     public partial class Chi_Tiet_Phim : Form
     {
-        private string URL;
         public Chi_Tiet_Phim(string url)
         {
             InitializeComponent();
-            URL = url;
+            Uri.TryCreate(url, UriKind.Absolute, out Uri result);
+            wb_Chi_Tiet.Source = result;
         }
     }
 }
