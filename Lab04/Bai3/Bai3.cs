@@ -19,6 +19,7 @@ namespace Bai3
         public Bai3()
         {
             InitializeComponent();
+
         }
 
         private bool InitialLoad = false;
@@ -173,6 +174,7 @@ namespace Bai3
                 Web form = new Web(Url);
                 form.Show();
             }
+
         }
     }
 }
