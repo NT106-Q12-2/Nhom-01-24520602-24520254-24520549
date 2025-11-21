@@ -16,7 +16,11 @@ namespace Bai4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< Updated upstream
             Application.Run(new Danh_Sach_Phim());
+=======
+            Application.Run(new Dat_Ve());
+>>>>>>> Stashed changes
         }
     }
 }
