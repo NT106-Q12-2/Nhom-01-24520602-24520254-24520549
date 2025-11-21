@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,11 +53,21 @@ namespace Bai4
                 var Name_Node = Film.SelectSingleNode(".//h3/a");
                 string Name = Name_Node?.InnerText.Trim();
 
-                var Genre_Node = Film.SelectSingleNode(".//li[span[text()='Thể loại:']]");
-                string Genre = Name_Node?.InnerText.Trim();
+                var Genre_Node = Film.SelectSingleNode(".//li[span[contains(text(),'Thể loại:')]]/text()");
+                string Genre = Genre_Node?.InnerText.Trim();
 
-                var Duration_Node = Film.SelectSingleNode(".//li[span[text()='Thời lượng:']]");
-                string Duration = Name_Node?.InnerText.Trim();
+                if (!string.IsNullOrEmpty(Genre))
+                {
+                    Genre = Regex.Replace(Genre, @"\s+", " ").Trim();
+                }
+
+                var Duration_Node = Film.SelectSingleNode("//li[span[contains(text(),'Thời lượng:')]]/text()");
+                string Duration = Duration_Node?.InnerText.Trim();
+                
+                if (!string.IsNullOrEmpty(Duration))
+                {
+                    Duration = Regex.Replace(Duration, @"\s+", " ").Trim();
+                }
 
                 Danh_Sach_Phim.Add(new Movie
                 {
@@ -157,6 +168,7 @@ namespace Bai4
                 Ghe_Da_Dat[Khach].Add(Ghe);
 
                 double Tien = Gia_Ve;
+
                 Tong_Tien += Tien;
 
                 Chi_Tiet_Ve.Add(Ghe);
