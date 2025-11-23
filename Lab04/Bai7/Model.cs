@@ -32,7 +32,7 @@ namespace Bai7
             public string Gia { get; set; }
 
             [JsonProperty("hinh_anh")]
-            public string HinhAnh { get; set; } 
+            public string HinhAnh { get; set; }
 
             [JsonProperty("dia_chi")]
             public string DiaChi { get; set; }

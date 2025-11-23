@@ -19,7 +19,9 @@ namespace Bai7
         private readonly string NguoiThem;
         private readonly HttpClient HttpClient;
         private readonly string AuthToken;
+        private bool _isProgrammaticChange = false;
 
+        List<FoodItem> All_Dishes = new List<FoodItem>();
         public frm_HomNayAnGi(string token)
         {
             InitializeComponent();
@@ -39,8 +41,6 @@ namespace Bai7
             comboBox2.Items.Add("15");
             comboBox2.SelectedIndex = 0;
 
-            comboBox1.Items.Add("1");
-            comboBox1.SelectedIndex = 0;
         }
 
         private async void Frm_HomNayAnGi_Load(object sender, EventArgs e)
@@ -55,14 +55,13 @@ namespace Bai7
 
         private async void ComboBox_Pagination_Changed(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
             await Load_Data_For_Active_Tab();
         }
 
         private async Task Reset_Page_And_Load_Data()
         {
             comboBox1.Items.Clear();
-            comboBox1.Items.Add("1");
-            comboBox1.SelectedIndex = 0;
 
             await Load_Data_For_Active_Tab();
         }
@@ -85,20 +84,19 @@ namespace Bai7
             }
             catch
             {
-               
+
             }
         }
 
         private async Task Load_All_Dishes(int Page, int Page_Size)
         {
-            var All_Dishes = new List<FoodItem>();
-            int Current_Page = 1;
 
             try
             {
-                while (All_Dishes.Count < Page_Size)
+                All_Dishes.Clear();
+                do
                 {
-                    var Api_Request_Body = new ApiRequest { Current = Current_Page, PageSize = Page_Size };
+                    var Api_Request_Body = new ApiRequest { Current = Page, PageSize = Page_Size };
                     string Json_Request_Body = JsonConvert.SerializeObject(Api_Request_Body);
                     var Content = new StringContent(Json_Request_Body, Encoding.UTF8, "application/json");
 
@@ -117,12 +115,11 @@ namespace Bai7
                         break;
 
                     All_Dishes.AddRange(Api_Response.Data);
-
-                    if (All_Dishes.Count >= Page_Size || All_Dishes.Count >= Api_Response.Pagination.Total)
+                    if (All_Dishes.Count >= Api_Response.Pagination.Total)
                         break;
 
-                    Current_Page++;
-                }
+                    Page++;
+                } while (true);
 
                 var Dishes_To_Show = All_Dishes.Count > Page_Size ? All_Dishes.GetRange(0, Page_Size) : All_Dishes;
 
@@ -132,8 +129,11 @@ namespace Bai7
                 {
                     Current = 1,
                     PageSize = Page_Size,
-                    Total = Math.Max(Page_Size, All_Dishes.Count)
+                    Total = All_Dishes.Count
                 });
+
+
+                comboBox1.SelectedIndex = 0;
             }
             catch (Exception Ex)
             {
@@ -230,18 +230,37 @@ namespace Bai7
 
         private void Update_Pagination_Controls(PaginationInfo Pagination)
         {
-            comboBox1.SelectedIndexChanged -= ComboBox_Pagination_Changed;
 
-            int Total_Pages = Math.Max(1, (int)Math.Ceiling((double)Pagination.Total / Pagination.PageSize));
-            comboBox1.Items.Clear();
-            for (int i = 1; i <= Total_Pages; i++)
+            _isProgrammaticChange = true;
+
+            try
             {
-                comboBox1.Items.Add(i.ToString());
+                int totalRecords = Pagination.Total;
+                int Total_Pages = Math.Max(1, (int)Math.Ceiling((double)totalRecords / Pagination.PageSize));
+
+                comboBox1.BeginUpdate();
+                comboBox1.Items.Clear();
+
+                for (int i = 1; i <= Total_Pages; i++)
+                {
+                    comboBox1.Items.Add(i.ToString());
+                }
+                comboBox1.EndUpdate();
+
+                if (Pagination.Current <= Total_Pages)
+                {
+                    comboBox1.SelectedIndex = Pagination.Current - 1;
+                }
+                else
+                {
+                    comboBox1.SelectedIndex = 0;
+                }
             }
+            finally
+            {
 
-            comboBox1.SelectedItem = Pagination.Current.ToString();
-
-            comboBox1.SelectedIndexChanged += ComboBox_Pagination_Changed;
+                _isProgrammaticChange = false;
+            }
         }
 
         private async void btn_AnGi_Click(object sender, EventArgs e)
@@ -298,6 +317,41 @@ namespace Bai7
             }
         }
 
+        private async Task Render_Local_Data()
+        {
+
+            int Current_Page = comboBox1.SelectedItem != null ? int.Parse(comboBox1.SelectedItem.ToString()) : 1;
+            int Page_Size = comboBox2.SelectedItem != null ? int.Parse(comboBox2.SelectedItem.ToString()) : 5;
+
+            int skip = (Current_Page - 1) * Page_Size;
+
+
+            if (skip >= All_Dishes.Count) return;
+
+
+            int take = Math.Min(Page_Size, All_Dishes.Count - skip);
+
+            var Dishes_To_Show = All_Dishes.GetRange(skip, take);
+
+
+            await Update_Dishes_UI(flp_MenuAll, Dishes_To_Show);
+        }
+
+        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (_isProgrammaticChange) return;
+
+            if (tc_DanhSachMonAn.SelectedTab == tPage_All)
+            {
+                if (All_Dishes == null || All_Dishes.Count == 0) return;
+                await Render_Local_Data();
+            }
+            else if (tc_DanhSachMonAn.SelectedTab == tPage_CuaToi)
+            {
+                await Load_Data_For_Active_Tab();
+            }
+        }
         private void btn_ThemMon_Click(object sender, EventArgs e)
         {
             ThemMonAn AddFood = new ThemMonAn(NguoiThem, AuthToken);
