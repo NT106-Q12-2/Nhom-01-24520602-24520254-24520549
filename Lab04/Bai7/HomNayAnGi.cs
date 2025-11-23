@@ -312,7 +312,7 @@ namespace Bai7
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi");
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi!");
                 }
             }
         }
