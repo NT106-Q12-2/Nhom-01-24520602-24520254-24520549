@@ -108,18 +108,24 @@ namespace Bai4
 
         private void cb_Phong_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cb_Phong.SelectedItem == null || cb_Phim.SelectedItem == null) return;
+
             string Phong = cb_Phong.SelectedItem.ToString();
+            string TenPhim = cb_Phim.SelectedItem.ToString(); 
+
             clb_Ghe.Items.Clear();
 
             foreach (var Hang_Ghe in new[] { "A", "B", "C" })
             {
                 for (int i = 1; i <= 5; i++)
                 {
-                    string Ghe = $"{Phong} - {Hang_Ghe}{i}";
+                    string Ghe_Hien_Thi = $"{Phong} - {Hang_Ghe}{i}";
 
-                    int Index = clb_Ghe.Items.Add(Ghe, false);
+                    string Key_Kiem_Tra = $"{TenPhim} - {Ghe_Hien_Thi}";
 
-                    if (Ghe_Da_Dat.Values.Any(G => G.Contains(Ghe)))
+                    int Index = clb_Ghe.Items.Add(Ghe_Hien_Thi, false);
+
+                    if (Ghe_Da_Dat.Values.Any(G => G.Contains(Key_Kiem_Tra)))
                     {
                         clb_Ghe.SetItemCheckState(Index, CheckState.Indeterminate);
                     }
@@ -137,49 +143,58 @@ namespace Bai4
             }
 
             string Khach = tb_TenKhach.Text.Trim();
+            string TenPhim = cb_Phim.SelectedItem.ToString(); 
 
             if (!Ghe_Da_Dat.ContainsKey(Khach))
                 Ghe_Da_Dat[Khach] = new List<string>();
 
-            var Ghe_Cu = Ghe_Da_Dat[Khach];
+            var Cac_Ghe_Dang_Chon = clb_Ghe.CheckedItems.Cast<string>().ToList();
 
-            var Ghe_Moi = clb_Ghe.CheckedItems.Cast<string>().Where(Ghe => !Ghe_Da_Dat.Values.Any(List => List.Contains(Ghe))).ToList();
+            List<string> Ghe_Moi_Hop_Le = new List<string>();
 
-            if (Ghe_Moi.Count == 0)
+            foreach (var Ghe_Hien_Thi in Cac_Ghe_Dang_Chon)
             {
-                MessageBox.Show("Vui lòng chọn ít nhất 1 ghế");
+                string Key_Luu_Tru = $"{TenPhim} - {Ghe_Hien_Thi}"; 
+
+                bool Da_Bi_Dat = Ghe_Da_Dat.Values.Any(List => List.Contains(Key_Luu_Tru));
+
+                if (!Da_Bi_Dat)
+                {
+                    Ghe_Moi_Hop_Le.Add(Ghe_Hien_Thi);
+                }
+            }
+
+            if (Ghe_Moi_Hop_Le.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ghế hoặc ghế bạn chọn đã có người nhanh tay đặt trước!");
                 return;
             }
 
-            string Phim = cb_Phim.SelectedItem.ToString();
-
-            var movie = Danh_Sach_Phim.FirstOrDefault(P => P.Ten_Phim == Phim);
+            var movie = Danh_Sach_Phim.FirstOrDefault(P => P.Ten_Phim == TenPhim);
             if (movie == null) return;
 
             int Gia_Ve = movie.Gia_Ve;
-            string The_Loai = movie.The_Loai;
-            string Thoi_Luong = movie.Thoi_Luong;
-
             double Tong_Tien = 0;
-            List<string> Chi_Tiet_Ve = new List<string>();
+            List<string> Chi_Tiet_Ve_In_Ra = new List<string>();
 
-            foreach (var Ghe in Ghe_Moi)
+            foreach (var Ghe_Hien_Thi in Ghe_Moi_Hop_Le)
             {
-                Ghe_Da_Dat[Khach].Add(Ghe);
+                string Key_Luu_Tru = $"{TenPhim} - {Ghe_Hien_Thi}";
+                Ghe_Da_Dat[Khach].Add(Key_Luu_Tru);
 
-                double Tien = Gia_Ve;
+                Tong_Tien += Gia_Ve;
 
-                Tong_Tien += Tien;
-
-                Chi_Tiet_Ve.Add(Ghe);
+                Chi_Tiet_Ve_In_Ra.Add(Ghe_Hien_Thi);
             }
 
+            cb_Phong_SelectedIndexChanged(sender, e);
+
             tb_KQ.Text = $"Họ tên: {Khach}" + Environment.NewLine +
-                         $"Phim: {Phim}" + Environment.NewLine +
-                         $"Thể loại: {The_Loai}" + Environment.NewLine +
-                         $"Thời lượng: {Thoi_Luong}" + Environment.NewLine +
+                         $"Phim: {TenPhim}" + Environment.NewLine +
+                         $"Thể loại: {movie.The_Loai}" + Environment.NewLine +
+                         $"Thời lượng: {movie.Thoi_Luong}" + Environment.NewLine +
                          $"Phòng chiếu: {cb_Phong.SelectedItem}" + Environment.NewLine +
-                         $"Ghế: {string.Join(", ", Chi_Tiet_Ve)}" + Environment.NewLine +
+                         $"Ghế: {string.Join(", ", Chi_Tiet_Ve_In_Ra)}" + Environment.NewLine +
                          $"Tổng tiền: {Tong_Tien}đ";
         }
 
