@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ptb_Anh_Phim = new System.Windows.Forms.PictureBox();
             this.lbl_Ten_Phim = new System.Windows.Forms.Label();
             this.lbl_URL = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Anh_Phim)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // ptb_Anh_Phim
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 136);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.ptb_Anh_Phim.Location = new System.Drawing.Point(3, 3);
+            this.ptb_Anh_Phim.Name = "ptb_Anh_Phim";
+            this.ptb_Anh_Phim.Size = new System.Drawing.Size(141, 136);
+            this.ptb_Anh_Phim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptb_Anh_Phim.TabIndex = 0;
+            this.ptb_Anh_Phim.TabStop = false;
             // 
             // lbl_Ten_Phim
             // 
@@ -68,11 +69,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbl_URL);
             this.Controls.Add(this.lbl_Ten_Phim);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ptb_Anh_Phim);
             this.Name = "Banner_Phim";
             this.Size = new System.Drawing.Size(488, 142);
-            this.Click += new System.EventHandler(this.Banner_Phim_Click);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Anh_Phim)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,7 +80,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ptb_Anh_Phim;
         private System.Windows.Forms.Label lbl_Ten_Phim;
         private System.Windows.Forms.Label lbl_URL;
     }
