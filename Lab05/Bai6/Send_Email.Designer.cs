@@ -50,11 +50,7 @@
             this.lbl_Sender.AutoSize = true;
             this.lbl_Sender.Location = new System.Drawing.Point(51, 56);
             this.lbl_Sender.Name = "lbl_Sender";
-<<<<<<< Updated upstream
-            this.lbl_Sender.Size = new System.Drawing.Size(40, 17);
-=======
             this.lbl_Sender.Size = new System.Drawing.Size(48, 20);
->>>>>>> Stashed changes
             this.lbl_Sender.TabIndex = 0;
             this.lbl_Sender.Text = "From";
             // 
@@ -63,11 +59,7 @@
             this.lbl_Name.AutoSize = true;
             this.lbl_Name.Location = new System.Drawing.Point(51, 114);
             this.lbl_Name.Name = "lbl_Name";
-<<<<<<< Updated upstream
-            this.lbl_Name.Size = new System.Drawing.Size(45, 17);
-=======
             this.lbl_Name.Size = new System.Drawing.Size(53, 20);
->>>>>>> Stashed changes
             this.lbl_Name.TabIndex = 1;
             this.lbl_Name.Text = "Name";
             // 
@@ -76,11 +68,7 @@
             this.lbl_Received.AutoSize = true;
             this.lbl_Received.Location = new System.Drawing.Point(51, 172);
             this.lbl_Received.Name = "lbl_Received";
-<<<<<<< Updated upstream
-            this.lbl_Received.Size = new System.Drawing.Size(25, 17);
-=======
             this.lbl_Received.Size = new System.Drawing.Size(28, 20);
->>>>>>> Stashed changes
             this.lbl_Received.TabIndex = 2;
             this.lbl_Received.Text = "To";
             // 
@@ -89,11 +77,7 @@
             this.lbl_Subject.AutoSize = true;
             this.lbl_Subject.Location = new System.Drawing.Point(51, 235);
             this.lbl_Subject.Name = "lbl_Subject";
-<<<<<<< Updated upstream
-            this.lbl_Subject.Size = new System.Drawing.Size(55, 17);
-=======
             this.lbl_Subject.Size = new System.Drawing.Size(65, 20);
->>>>>>> Stashed changes
             this.lbl_Subject.TabIndex = 3;
             this.lbl_Subject.Text = "Subject";
             // 
@@ -102,11 +86,7 @@
             this.lbl_Body.AutoSize = true;
             this.lbl_Body.Location = new System.Drawing.Point(51, 312);
             this.lbl_Body.Name = "lbl_Body";
-<<<<<<< Updated upstream
-            this.lbl_Body.Size = new System.Drawing.Size(40, 17);
-=======
             this.lbl_Body.Size = new System.Drawing.Size(47, 20);
->>>>>>> Stashed changes
             this.lbl_Body.TabIndex = 4;
             this.lbl_Body.Text = "Body";
             // 
@@ -115,11 +95,7 @@
             this.lbl_Attach.AutoSize = true;
             this.lbl_Attach.Location = new System.Drawing.Point(46, 737);
             this.lbl_Attach.Name = "lbl_Attach";
-<<<<<<< Updated upstream
-            this.lbl_Attach.Size = new System.Drawing.Size(79, 17);
-=======
             this.lbl_Attach.Size = new System.Drawing.Size(94, 20);
->>>>>>> Stashed changes
             this.lbl_Attach.TabIndex = 5;
             this.lbl_Attach.Text = "Attachment";
             // 
@@ -139,10 +115,7 @@
             this.btn_Browse.TabIndex = 7;
             this.btn_Browse.Text = "Browse...";
             this.btn_Browse.UseVisualStyleBackColor = true;
-<<<<<<< Updated upstream
-=======
             this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
->>>>>>> Stashed changes
             // 
             // btn_Send
             // 
@@ -152,21 +125,14 @@
             this.btn_Send.TabIndex = 8;
             this.btn_Send.Text = "Send";
             this.btn_Send.UseVisualStyleBackColor = true;
-<<<<<<< Updated upstream
-=======
             this.btn_Send.Click += new System.EventHandler(this.btn_Send_Click);
->>>>>>> Stashed changes
             // 
             // tb_Attach
             // 
             this.tb_Attach.Location = new System.Drawing.Point(163, 734);
             this.tb_Attach.Name = "tb_Attach";
             this.tb_Attach.ReadOnly = true;
-<<<<<<< Updated upstream
-            this.tb_Attach.Size = new System.Drawing.Size(426, 23);
-=======
             this.tb_Attach.Size = new System.Drawing.Size(426, 26);
->>>>>>> Stashed changes
             this.tb_Attach.TabIndex = 9;
             // 
             // tb_EmailSender
@@ -174,44 +140,28 @@
             this.tb_EmailSender.Location = new System.Drawing.Point(163, 53);
             this.tb_EmailSender.Name = "tb_EmailSender";
             this.tb_EmailSender.ReadOnly = true;
-<<<<<<< Updated upstream
-            this.tb_EmailSender.Size = new System.Drawing.Size(565, 23);
-=======
             this.tb_EmailSender.Size = new System.Drawing.Size(565, 26);
->>>>>>> Stashed changes
             this.tb_EmailSender.TabIndex = 10;
             // 
             // tb_Name
             // 
             this.tb_Name.Location = new System.Drawing.Point(163, 111);
             this.tb_Name.Name = "tb_Name";
-<<<<<<< Updated upstream
-            this.tb_Name.Size = new System.Drawing.Size(565, 23);
-=======
             this.tb_Name.Size = new System.Drawing.Size(565, 26);
->>>>>>> Stashed changes
             this.tb_Name.TabIndex = 11;
             // 
             // tb_EmailReceived
             // 
             this.tb_EmailReceived.Location = new System.Drawing.Point(163, 169);
             this.tb_EmailReceived.Name = "tb_EmailReceived";
-<<<<<<< Updated upstream
-            this.tb_EmailReceived.Size = new System.Drawing.Size(565, 23);
-=======
             this.tb_EmailReceived.Size = new System.Drawing.Size(565, 26);
->>>>>>> Stashed changes
             this.tb_EmailReceived.TabIndex = 12;
             // 
             // tb_Subject
             // 
             this.tb_Subject.Location = new System.Drawing.Point(163, 232);
             this.tb_Subject.Name = "tb_Subject";
-<<<<<<< Updated upstream
-            this.tb_Subject.Size = new System.Drawing.Size(565, 23);
-=======
             this.tb_Subject.Size = new System.Drawing.Size(565, 26);
->>>>>>> Stashed changes
             this.tb_Subject.TabIndex = 13;
             // 
             // cb_HTML
@@ -219,22 +169,14 @@
             this.cb_HTML.AutoSize = true;
             this.cb_HTML.Location = new System.Drawing.Point(163, 311);
             this.cb_HTML.Name = "cb_HTML";
-<<<<<<< Updated upstream
-            this.cb_HTML.Size = new System.Drawing.Size(65, 21);
-=======
             this.cb_HTML.Size = new System.Drawing.Size(78, 24);
->>>>>>> Stashed changes
             this.cb_HTML.TabIndex = 14;
             this.cb_HTML.Text = "HTML";
             this.cb_HTML.UseVisualStyleBackColor = true;
             // 
             // frm_SendEmail
             // 
-<<<<<<< Updated upstream
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-=======
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
->>>>>>> Stashed changes
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 838);
             this.Controls.Add(this.cb_HTML);
@@ -256,10 +198,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_SendEmail";
             this.Text = "Send email";
-<<<<<<< Updated upstream
-            this.Load += new System.EventHandler(this.frm_SendEmail_Load);
-=======
->>>>>>> Stashed changes
             this.ResumeLayout(false);
             this.PerformLayout();
 
