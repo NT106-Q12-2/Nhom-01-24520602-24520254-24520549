@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bai6
 {
-    public partial class frm_Bai6 : Form
+    public partial class frm_SendEmail: Form
     {
-        public frm_Bai6()
+        public frm_SendEmail()
         {
             InitializeComponent();
         }
