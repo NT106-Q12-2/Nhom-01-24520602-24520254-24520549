@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace Bai6
 {
-    public partial class frm_SendEmail: Form
+    public partial class Read_Mail : Form
     {
-        public frm_SendEmail(string email)
+        public Read_Mail(string From, string To)
         {
             InitializeComponent();
-            tb_EmailSender.Text = email;
         }
 
-        private void frm_SendEmail_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
