@@ -27,6 +27,7 @@ namespace Bai6
             this.Port = Port;
             this.Email = Email;
             this.Password = Password;
+            tb_EmailSender.Text = Email;
         }
 
         private void btn_Browse_Click(object sender, EventArgs e)
@@ -40,10 +41,13 @@ namespace Bai6
 
         private void btn_Send_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tb_EmailSender.Text)
+            if (string.IsNullOrEmpty(tb_EmailReceived.Text)
                 || string.IsNullOrEmpty(tb_Subject.Text)
                 || string.IsNullOrEmpty(rtb_Body.Text))
-            MessageBox.Show("Vui lòng nhập đi đủ thông tin!");
+            {
+                MessageBox.Show("Vui lòng nhập đi đủ thông tin!");
+                return;
+            }
 
             try
             {
@@ -76,6 +80,14 @@ namespace Bai6
                     Message.Body = builder.ToMessageBody();
 
                     Client.Send(Message);
+
+                    MessageBox.Show("Gửi email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    tb_EmailReceived.Text = "";
+                    tb_Subject.Text = "";
+                    rtb_Body.Text = "";
+                    tb_Attach.Text = "";
+                    cb_HTML.Checked = false;
                 }
             }
             catch (Exception ex) 
