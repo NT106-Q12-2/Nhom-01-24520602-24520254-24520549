@@ -8,13 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bbai4
+namespace Bai4
 {
-    public partial class Form1 : Form
+    public partial class Banner : UserControl
     {
-        public Form1()
+        private string TenPhim;
+        private string Anh;
+
+        public Banner(string tenphim, string anh)
+
         {
+
             InitializeComponent();
+
+            TenPhim = tenphim;
+            lbl_Ten_Phim.Text = TenPhim;
+            ptb_Anh_Phim.LoadAsync(anh);
+
         }
     }
 }
