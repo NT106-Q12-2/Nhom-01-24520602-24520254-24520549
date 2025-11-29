@@ -92,6 +92,7 @@
             this.lv_Mail.TabIndex = 0;
             this.lv_Mail.UseCompatibleStateImageBehavior = false;
             this.lv_Mail.View = System.Windows.Forms.View.Details;
+            this.lv_Mail.SelectedIndexChanged += new System.EventHandler(this.lv_Mail_SelectedIndexChanged);
             // 
             // STT
             // 
@@ -177,14 +178,14 @@
             this.tb_Password.Location = new System.Drawing.Point(147, 71);
             this.tb_Password.Name = "tb_Password";
             this.tb_Password.PasswordChar = '*';
-            this.tb_Password.Size = new System.Drawing.Size(219, 23);
+            this.tb_Password.Size = new System.Drawing.Size(219, 30);
             this.tb_Password.TabIndex = 3;
             // 
             // tb_Email
             // 
             this.tb_Email.Location = new System.Drawing.Point(147, 30);
             this.tb_Email.Name = "tb_Email";
-            this.tb_Email.Size = new System.Drawing.Size(219, 23);
+            this.tb_Email.Size = new System.Drawing.Size(219, 30);
             this.tb_Email.TabIndex = 2;
             // 
             // lbl_Password
@@ -192,7 +193,7 @@
             this.lbl_Password.AutoSize = true;
             this.lbl_Password.Location = new System.Drawing.Point(42, 74);
             this.lbl_Password.Name = "lbl_Password";
-            this.lbl_Password.Size = new System.Drawing.Size(60, 16);
+            this.lbl_Password.Size = new System.Drawing.Size(82, 22);
             this.lbl_Password.TabIndex = 1;
             this.lbl_Password.Text = "Mật khẩu";
             // 
@@ -201,7 +202,7 @@
             this.lbl_Email.AutoSize = true;
             this.lbl_Email.Location = new System.Drawing.Point(36, 33);
             this.lbl_Email.Name = "lbl_Email";
-            this.lbl_Email.Size = new System.Drawing.Size(63, 16);
+            this.lbl_Email.Size = new System.Drawing.Size(88, 22);
             this.lbl_Email.TabIndex = 0;
             this.lbl_Email.Text = "Tài khoản";
             // 
@@ -227,7 +228,7 @@
             this.lbl_Port2.AutoSize = true;
             this.lbl_Port2.Location = new System.Drawing.Point(323, 100);
             this.lbl_Port2.Name = "lbl_Port2";
-            this.lbl_Port2.Size = new System.Drawing.Size(31, 16);
+            this.lbl_Port2.Size = new System.Drawing.Size(43, 22);
             this.lbl_Port2.TabIndex = 7;
             this.lbl_Port2.Text = "Port";
             // 
@@ -236,7 +237,7 @@
             this.lbl_Smtp.AutoSize = true;
             this.lbl_Smtp.Location = new System.Drawing.Point(323, 42);
             this.lbl_Smtp.Name = "lbl_Smtp";
-            this.lbl_Smtp.Size = new System.Drawing.Size(44, 16);
+            this.lbl_Smtp.Size = new System.Drawing.Size(61, 22);
             this.lbl_Smtp.TabIndex = 6;
             this.lbl_Smtp.Text = "SMTP";
             // 
@@ -245,7 +246,7 @@
             this.lbl_Port1.AutoSize = true;
             this.lbl_Port1.Location = new System.Drawing.Point(25, 100);
             this.lbl_Port1.Name = "lbl_Port1";
-            this.lbl_Port1.Size = new System.Drawing.Size(31, 16);
+            this.lbl_Port1.Size = new System.Drawing.Size(43, 22);
             this.lbl_Port1.TabIndex = 5;
             this.lbl_Port1.Text = "Port";
             // 
@@ -254,7 +255,7 @@
             this.lbl_Imap.AutoSize = true;
             this.lbl_Imap.Location = new System.Drawing.Point(25, 42);
             this.lbl_Imap.Name = "lbl_Imap";
-            this.lbl_Imap.Size = new System.Drawing.Size(41, 16);
+            this.lbl_Imap.Size = new System.Drawing.Size(58, 22);
             this.lbl_Imap.TabIndex = 4;
             this.lbl_Imap.Text = "IMAP";
             // 
@@ -267,7 +268,7 @@
             0,
             0});
             this.nUD_Port2.Name = "nUD_Port2";
-            this.nUD_Port2.Size = new System.Drawing.Size(197, 23);
+            this.nUD_Port2.Size = new System.Drawing.Size(197, 30);
             this.nUD_Port2.TabIndex = 3;
             // 
             // nUD_Port1
@@ -279,26 +280,26 @@
             0,
             0});
             this.nUD_Port1.Name = "nUD_Port1";
-            this.nUD_Port1.Size = new System.Drawing.Size(197, 23);
+            this.nUD_Port1.Size = new System.Drawing.Size(197, 30);
             this.nUD_Port1.TabIndex = 2;
             // 
             // tb_SMTP
             // 
             this.tb_SMTP.Location = new System.Drawing.Point(400, 39);
             this.tb_SMTP.Name = "tb_SMTP";
-            this.tb_SMTP.Size = new System.Drawing.Size(197, 23);
+            this.tb_SMTP.Size = new System.Drawing.Size(197, 30);
             this.tb_SMTP.TabIndex = 1;
             // 
             // tb_IMAP
             // 
             this.tb_IMAP.Location = new System.Drawing.Point(100, 39);
             this.tb_IMAP.Name = "tb_IMAP";
-            this.tb_IMAP.Size = new System.Drawing.Size(197, 23);
+            this.tb_IMAP.Size = new System.Drawing.Size(197, 30);
             this.tb_IMAP.TabIndex = 0;
             // 
             // frm_Bai6
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1078, 693);
             this.Controls.Add(this.gb_CaiDat);

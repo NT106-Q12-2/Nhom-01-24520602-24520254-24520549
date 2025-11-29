@@ -18,8 +18,10 @@ namespace Bai6
         public frm_Bai6()
         {
             InitializeComponent();
+            listMail = new List<MimeMessage>();
         }
 
+        List<MimeMessage> listMail;
         private void btn_Log_Out_Click(object sender, EventArgs e)
         {
             tb_Email.Clear();
@@ -37,17 +39,19 @@ namespace Bai6
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             lv_Mail.Items.Clear();
-            using(var client = new ImapClient())
+            listMail.Clear();
+            using (var client = new ImapClient())
             {
                 client.Connect(tb_IMAP.Text, (int)nUD_Port1.Value);
                 client.Authenticate(tb_Email.Text, tb_Password.Text);
                 var inbox = client.Inbox;
                 inbox.Open(FolderAccess.ReadOnly);
 
-                int count = 0; 
-                for(int i = 0; i < inbox.Count; i++)
+                int count = 0;
+                for (int i = 0; i < inbox.Count; i++)
                 {
                     var message = inbox.GetMessage(i);
+                    listMail.Add(message);
                     AddInfo(message, count);
                     count++;
                 }
@@ -66,6 +70,7 @@ namespace Bai6
         private void btn_Login_Click(object sender, EventArgs e)
         {
             lv_Mail.Items.Clear();
+            listMail.Clear();
             using (var client = new ImapClient())
             {
                 try
@@ -89,21 +94,38 @@ namespace Bai6
                     for (int i = 0; i < inbox.Count; i++)
                     {
                         var message = inbox.GetMessage(i);
+                        listMail.Add(message);
                         AddInfo(message, count);
                         count++;
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi đăng nhập: {ex.Message}", "Lỗi");
                 }
             }
         }
 
+
         private void btn_Send_Mail_Click(object sender, EventArgs e)
         {
             frm_SendEmail form = new frm_SendEmail(tb_Email.Text, tb_Password.Text, tb_SMTP.Text, (int)nUD_Port2.Value);
             form.Show();
+        }
+
+        private void lv_Mail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (lv_Mail.SelectedIndices.Count > 0)
+            {
+                int index = lv_Mail.SelectedIndices[0];
+                if (index >= 0 && index < listMail.Count)
+                {
+                    MimeMessage mail = listMail[index];
+                    Read_Mail _rm = new Read_Mail(mail);
+                    _rm.Show();
+                }
+            }
         }
     }
 }
