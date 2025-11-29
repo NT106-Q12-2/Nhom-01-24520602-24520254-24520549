@@ -50,7 +50,7 @@
             this.lbl_Sender.AutoSize = true;
             this.lbl_Sender.Location = new System.Drawing.Point(51, 56);
             this.lbl_Sender.Name = "lbl_Sender";
-            this.lbl_Sender.Size = new System.Drawing.Size(57, 25);
+            this.lbl_Sender.Size = new System.Drawing.Size(48, 20);
             this.lbl_Sender.TabIndex = 0;
             this.lbl_Sender.Text = "From";
             // 
@@ -59,7 +59,7 @@
             this.lbl_Name.AutoSize = true;
             this.lbl_Name.Location = new System.Drawing.Point(51, 114);
             this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(64, 25);
+            this.lbl_Name.Size = new System.Drawing.Size(53, 20);
             this.lbl_Name.TabIndex = 1;
             this.lbl_Name.Text = "Name";
             // 
@@ -68,7 +68,7 @@
             this.lbl_Received.AutoSize = true;
             this.lbl_Received.Location = new System.Drawing.Point(51, 172);
             this.lbl_Received.Name = "lbl_Received";
-            this.lbl_Received.Size = new System.Drawing.Size(36, 25);
+            this.lbl_Received.Size = new System.Drawing.Size(28, 20);
             this.lbl_Received.TabIndex = 2;
             this.lbl_Received.Text = "To";
             // 
@@ -77,7 +77,7 @@
             this.lbl_Subject.AutoSize = true;
             this.lbl_Subject.Location = new System.Drawing.Point(51, 235);
             this.lbl_Subject.Name = "lbl_Subject";
-            this.lbl_Subject.Size = new System.Drawing.Size(78, 25);
+            this.lbl_Subject.Size = new System.Drawing.Size(65, 20);
             this.lbl_Subject.TabIndex = 3;
             this.lbl_Subject.Text = "Subject";
             // 
@@ -86,7 +86,7 @@
             this.lbl_Body.AutoSize = true;
             this.lbl_Body.Location = new System.Drawing.Point(51, 312);
             this.lbl_Body.Name = "lbl_Body";
-            this.lbl_Body.Size = new System.Drawing.Size(57, 25);
+            this.lbl_Body.Size = new System.Drawing.Size(47, 20);
             this.lbl_Body.TabIndex = 4;
             this.lbl_Body.Text = "Body";
             // 
@@ -95,7 +95,7 @@
             this.lbl_Attach.AutoSize = true;
             this.lbl_Attach.Location = new System.Drawing.Point(46, 737);
             this.lbl_Attach.Name = "lbl_Attach";
-            this.lbl_Attach.Size = new System.Drawing.Size(111, 25);
+            this.lbl_Attach.Size = new System.Drawing.Size(94, 20);
             this.lbl_Attach.TabIndex = 5;
             this.lbl_Attach.Text = "Attachment";
             // 
@@ -115,6 +115,7 @@
             this.btn_Browse.TabIndex = 7;
             this.btn_Browse.Text = "Browse...";
             this.btn_Browse.UseVisualStyleBackColor = true;
+            this.btn_Browse.Click += new System.EventHandler(this.btn_Browse_Click);
             // 
             // btn_Send
             // 
@@ -124,13 +125,14 @@
             this.btn_Send.TabIndex = 8;
             this.btn_Send.Text = "Send";
             this.btn_Send.UseVisualStyleBackColor = true;
+            this.btn_Send.Click += new System.EventHandler(this.btn_Send_Click);
             // 
             // tb_Attach
             // 
             this.tb_Attach.Location = new System.Drawing.Point(163, 734);
             this.tb_Attach.Name = "tb_Attach";
             this.tb_Attach.ReadOnly = true;
-            this.tb_Attach.Size = new System.Drawing.Size(426, 30);
+            this.tb_Attach.Size = new System.Drawing.Size(426, 26);
             this.tb_Attach.TabIndex = 9;
             // 
             // tb_EmailSender
@@ -138,28 +140,28 @@
             this.tb_EmailSender.Location = new System.Drawing.Point(163, 53);
             this.tb_EmailSender.Name = "tb_EmailSender";
             this.tb_EmailSender.ReadOnly = true;
-            this.tb_EmailSender.Size = new System.Drawing.Size(565, 30);
+            this.tb_EmailSender.Size = new System.Drawing.Size(565, 26);
             this.tb_EmailSender.TabIndex = 10;
             // 
             // tb_Name
             // 
             this.tb_Name.Location = new System.Drawing.Point(163, 111);
             this.tb_Name.Name = "tb_Name";
-            this.tb_Name.Size = new System.Drawing.Size(565, 30);
+            this.tb_Name.Size = new System.Drawing.Size(565, 26);
             this.tb_Name.TabIndex = 11;
             // 
             // tb_EmailReceived
             // 
             this.tb_EmailReceived.Location = new System.Drawing.Point(163, 169);
             this.tb_EmailReceived.Name = "tb_EmailReceived";
-            this.tb_EmailReceived.Size = new System.Drawing.Size(565, 30);
+            this.tb_EmailReceived.Size = new System.Drawing.Size(565, 26);
             this.tb_EmailReceived.TabIndex = 12;
             // 
             // tb_Subject
             // 
             this.tb_Subject.Location = new System.Drawing.Point(163, 232);
             this.tb_Subject.Name = "tb_Subject";
-            this.tb_Subject.Size = new System.Drawing.Size(565, 30);
+            this.tb_Subject.Size = new System.Drawing.Size(565, 26);
             this.tb_Subject.TabIndex = 13;
             // 
             // cb_HTML
@@ -167,14 +169,14 @@
             this.cb_HTML.AutoSize = true;
             this.cb_HTML.Location = new System.Drawing.Point(163, 311);
             this.cb_HTML.Name = "cb_HTML";
-            this.cb_HTML.Size = new System.Drawing.Size(93, 29);
+            this.cb_HTML.Size = new System.Drawing.Size(78, 24);
             this.cb_HTML.TabIndex = 14;
             this.cb_HTML.Text = "HTML";
             this.cb_HTML.UseVisualStyleBackColor = true;
             // 
             // frm_SendEmail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 838);
             this.Controls.Add(this.cb_HTML);
@@ -193,7 +195,7 @@
             this.Controls.Add(this.lbl_Name);
             this.Controls.Add(this.lbl_Sender);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_SendEmail";
             this.Text = "Send email";
             this.ResumeLayout(false);
