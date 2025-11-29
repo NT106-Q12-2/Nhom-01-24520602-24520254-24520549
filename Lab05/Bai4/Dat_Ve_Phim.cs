@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.Json;
 using System.Text.Encodings;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Text.Unicode;
-using System.Text.Encodings.Web;
-using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace Bbai4
 {
@@ -137,7 +139,10 @@ namespace Bbai4
 
         private void btn_DatVe_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tb_TenKhach.Text) || cb_Phim.SelectedIndex == -1 || cb_Phong.SelectedIndex == -1)
+            if (string.IsNullOrEmpty(tb_TenKhach.Text) || 
+                cb_Phim.SelectedIndex == -1 || 
+                cb_Phong.SelectedIndex == -1 ||
+                string.IsNullOrEmpty(tb_Email.Text))
             {
                 MessageBox.Show("Vui lòng nhập đủ thông tin!");
                 tb_TenKhach.Focus();
@@ -198,6 +203,42 @@ namespace Bbai4
                          $"Phòng chiếu: {cb_Phong.SelectedItem}" + Environment.NewLine +
                          $"Ghế: {string.Join(", ", Chi_Tiet_Ve_In_Ra)}" + Environment.NewLine +
                          $"Tổng tiền: {Tong_Tien}đ";
+            try
+            {
+                using (var Client = new SmtpClient())
+                {
+                    Client.Connect("smtp.gmail.com", 465, true);
+                    Client.Authenticate("hungnd.attt2024@gmail.com", "rigu cwqp sjrd bkmk");
+
+                    var Message = new MimeMessage();
+                    Message.From.Add(new MailboxAddress("Rạp phim 3 chú hề", "hungnd.attt2024@gmail.com"));
+                    Message.To.Add(new MailboxAddress("", tb_Email.Text));
+                    Message.Subject = "Hóa đơn vé xem phim";
+
+                    Message.Body = new TextPart("plain")
+                    {
+                        Text = $"Họ tên: {Khach}" + "\n" +
+                               $"Phim: {TenPhim}" + "\n" +
+                               $"Thể loại: {movie.The_Loai}" + "\n" +
+                               $"Thời lượng: {movie.Thoi_Luong}" + "\n" +
+                               $"Phòng chiếu: {cb_Phong.SelectedItem}" + "\n" +
+                               $"Ghế: {string.Join(", ", Chi_Tiet_Ve_In_Ra)}" + "\n" +
+                               $"Tổng tiền: {Tong_Tien}đ" + "\n" + 
+                               "Nơi nào bạn ngồi nơi đó là long ngai!"
+                    };
+
+                    Client.Send(Message);
+
+                    MessageBox.Show("Gửi email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    tb_Email.Text = "";
+                    tb_TenKhach.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Error");
+            }
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
