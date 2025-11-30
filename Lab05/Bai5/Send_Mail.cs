@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bai5
 {
-    public partial class Form1 : Form
+    public partial class Send_Mail : Form
     {
-        public Form1()
+        public Send_Mail()
         {
             InitializeComponent();
         }
