@@ -34,7 +34,6 @@ namespace Bai5
             this.lv_dsmonan = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_themmon = new System.Windows.Forms.Button();
-            this.btn_xemmon = new System.Windows.Forms.Button();
             this.btn_chonmon = new System.Windows.Forms.Button();
             this.ptb_ketquamonan = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,7 +54,7 @@ namespace Bai5
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(322, 9);
+            this.label1.Location = new System.Drawing.Point(322, 224);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 41);
             this.label1.TabIndex = 1;
@@ -67,31 +66,19 @@ namespace Bai5
             this.btn_themmon.ForeColor = System.Drawing.Color.ForestGreen;
             this.btn_themmon.Location = new System.Drawing.Point(321, 57);
             this.btn_themmon.Name = "btn_themmon";
-            this.btn_themmon.Size = new System.Drawing.Size(249, 128);
+            this.btn_themmon.Size = new System.Drawing.Size(249, 139);
             this.btn_themmon.TabIndex = 8;
             this.btn_themmon.Text = "Thêm món ăn";
             this.btn_themmon.UseVisualStyleBackColor = true;
             this.btn_themmon.Click += new System.EventHandler(this.btn_themmon_Click);
             // 
-            // btn_xemmon
-            // 
-            this.btn_xemmon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xemmon.ForeColor = System.Drawing.Color.Orange;
-            this.btn_xemmon.Location = new System.Drawing.Point(321, 191);
-            this.btn_xemmon.Name = "btn_xemmon";
-            this.btn_xemmon.Size = new System.Drawing.Size(249, 119);
-            this.btn_xemmon.TabIndex = 9;
-            this.btn_xemmon.Text = "Xem danh sách";
-            this.btn_xemmon.UseVisualStyleBackColor = true;
-            this.btn_xemmon.Click += new System.EventHandler(this.btn_xemmon_Click);
-            // 
             // btn_chonmon
             // 
             this.btn_chonmon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_chonmon.ForeColor = System.Drawing.Color.Red;
-            this.btn_chonmon.Location = new System.Drawing.Point(321, 316);
+            this.btn_chonmon.Location = new System.Drawing.Point(321, 290);
             this.btn_chonmon.Name = "btn_chonmon";
-            this.btn_chonmon.Size = new System.Drawing.Size(249, 110);
+            this.btn_chonmon.Size = new System.Drawing.Size(249, 139);
             this.btn_chonmon.TabIndex = 10;
             this.btn_chonmon.Text = "Chọn món ăn";
             this.btn_chonmon.UseVisualStyleBackColor = true;
@@ -140,13 +127,13 @@ namespace Bai5
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ptb_ketquamonan);
             this.Controls.Add(this.btn_chonmon);
-            this.Controls.Add(this.btn_xemmon);
             this.Controls.Add(this.btn_themmon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lv_dsmonan);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Hom_Nay_An_Gi";
             this.Text = "Hôm Nay Ăn Gì";
+            this.Load += new System.EventHandler(this.Hom_Nay_An_Gi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptb_ketquamonan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,7 +144,6 @@ namespace Bai5
         private ListView lv_dsmonan;
         private Label label1;
         private Button btn_themmon;
-        private Button btn_xemmon;
         private Button btn_chonmon;
         private PictureBox ptb_ketquamonan;
         private Label label6;

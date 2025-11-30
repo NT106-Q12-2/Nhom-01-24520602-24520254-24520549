@@ -29,40 +29,53 @@ namespace Bai5
         // Chuỗi kết nối SQL
         static string ConnectionSQL = "Data Source=SQLHomNayAnGi.db;Version=3;";
 
+        private void Hom_Nay_An_Gi_Load(object sender, EventArgs e)
+        {
+            xem_mon();
+        }
+
         private void btn_themmon_Click(object sender, EventArgs e)
         {
             // Đọc mail rồi gửi lên db
         }
 
-        private void btn_xemmon_Click(object sender, EventArgs e)
+
+        private void xem_mon()
         {
-            lv_dsmonan.Items.Clear();
-            lv_dsmonan.View = View.Details;
-            lv_dsmonan.FullRowSelect = true;
-            lv_dsmonan.GridLines = true;
-            lv_dsmonan.Columns.Add("Tên món ăn", 300);
-            lv_dsmonan.Columns.Add("Người cung cấp", 300);
-            lv_dsmonan.Columns.Add("Link hình ảnh", 800);
-            using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
+            try
             {
-                connect.Open();
-                string selectData = "SELECT TenMonAn, HoVaTen, HinhAnh FROM MonAn JOIN NguoiDung ON MonAn.IDNCC = NguoiDung.IDNCC";
-                using (SQLiteCommand command = new SQLiteCommand(selectData, connect))
+                lv_dsmonan.Items.Clear();
+                lv_dsmonan.View = View.Details;
+                lv_dsmonan.FullRowSelect = true;
+                lv_dsmonan.GridLines = true;
+                lv_dsmonan.Columns.Add("Tên món ăn", 300);
+                lv_dsmonan.Columns.Add("Người cung cấp", 300);
+                lv_dsmonan.Columns.Add("Link hình ảnh", 800);
+                using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
                 {
-                    using (SQLiteDataReader readData = command.ExecuteReader())
+                    connect.Open();
+                    string selectData = "SELECT TenMonAn, HoVaTen, HinhAnh FROM MonAn JOIN NguoiDung ON MonAn.IDNCC = NguoiDung.IDNCC";
+                    using (SQLiteCommand command = new SQLiteCommand(selectData, connect))
                     {
-                        while (readData.Read())
+                        using (SQLiteDataReader readData = command.ExecuteReader())
                         {
-                            ListViewItem item = new ListViewItem(readData["TenMonAn"].ToString());
-                            item.SubItems.Add(readData["HoVaTen"].ToString());
-                            item.SubItems.Add(readData["HinhAnh"].ToString());
-                            lv_dsmonan.Items.Add(item);
+                            while (readData.Read())
+                            {
+                                ListViewItem item = new ListViewItem(readData["TenMonAn"].ToString());
+                                item.SubItems.Add(readData["HoVaTen"].ToString());
+                                item.SubItems.Add(readData["HinhAnh"].ToString());
+                                lv_dsmonan.Items.Add(item);
+                            }
                         }
                     }
-                }                                                                                       
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
             }
         }
-                                                                                                                                                            
+
         private void btn_chonmon_Click(object sender, EventArgs e)
         {
             using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
