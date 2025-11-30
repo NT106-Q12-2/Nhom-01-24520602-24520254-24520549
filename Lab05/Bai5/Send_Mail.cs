@@ -24,9 +24,9 @@ namespace Bai5
         List<(string TenMon, string Link)> ds;
         private void btn_Send_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tb_EmailSender.Text))
+            if (string.IsNullOrEmpty(tb_EmailSender.Text) || string.IsNullOrEmpty(tb_Password.Text))
             {
-                MessageBox.Show("Vui lòng nhập email người gửi", "Lỗi");
+                MessageBox.Show("Vui lòng nhập đầy đủ email và mật khẩu xác thực", "Lỗi");
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace Bai5
             try
             {
                 client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("dangnguyen332006@gmail.com", "onjz liwb adzd dxyh"); //Mật khẩu riêng cho từng thiết bị 
+                client.Authenticate(tb_EmailSender.Text, tb_Password.Text); 
 
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(string.IsNullOrEmpty(tb_Name.Text) ? "Người ẩn danh" : tb_Name.Text.Trim()

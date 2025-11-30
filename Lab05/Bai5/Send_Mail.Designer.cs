@@ -38,11 +38,13 @@
             this.tb_tenmonan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_AddFood = new System.Windows.Forms.Button();
+            this.lbl_password = new System.Windows.Forms.Label();
+            this.tb_Password = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_Send
             // 
-            this.btn_Send.Location = new System.Drawing.Point(649, 256);
+            this.btn_Send.Location = new System.Drawing.Point(651, 312);
             this.btn_Send.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Send.Name = "btn_Send";
             this.btn_Send.Size = new System.Drawing.Size(145, 56);
@@ -53,7 +55,7 @@
             // 
             // tb_Name
             // 
-            this.tb_Name.Location = new System.Drawing.Point(161, 106);
+            this.tb_Name.Location = new System.Drawing.Point(161, 154);
             this.tb_Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(635, 26);
@@ -62,7 +64,7 @@
             // lbl_Name
             // 
             this.lbl_Name.AutoSize = true;
-            this.lbl_Name.Location = new System.Drawing.Point(35, 110);
+            this.lbl_Name.Location = new System.Drawing.Point(35, 160);
             this.lbl_Name.Name = "lbl_Name";
             this.lbl_Name.Size = new System.Drawing.Size(51, 20);
             this.lbl_Name.TabIndex = 16;
@@ -87,7 +89,7 @@
             // 
             // tb_link
             // 
-            this.tb_link.Location = new System.Drawing.Point(161, 207);
+            this.tb_link.Location = new System.Drawing.Point(161, 255);
             this.tb_link.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_link.Name = "tb_link";
             this.tb_link.Size = new System.Drawing.Size(635, 26);
@@ -96,7 +98,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 213);
+            this.label1.Location = new System.Drawing.Point(35, 261);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 29;
@@ -104,7 +106,7 @@
             // 
             // tb_tenmonan
             // 
-            this.tb_tenmonan.Location = new System.Drawing.Point(161, 160);
+            this.tb_tenmonan.Location = new System.Drawing.Point(161, 208);
             this.tb_tenmonan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_tenmonan.Name = "tb_tenmonan";
             this.tb_tenmonan.Size = new System.Drawing.Size(635, 26);
@@ -113,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 160);
+            this.label2.Location = new System.Drawing.Point(35, 208);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 31;
@@ -121,7 +123,7 @@
             // 
             // btn_AddFood
             // 
-            this.btn_AddFood.Location = new System.Drawing.Point(481, 256);
+            this.btn_AddFood.Location = new System.Drawing.Point(481, 312);
             this.btn_AddFood.Name = "btn_AddFood";
             this.btn_AddFood.Size = new System.Drawing.Size(145, 56);
             this.btn_AddFood.TabIndex = 33;
@@ -129,11 +131,29 @@
             this.btn_AddFood.UseVisualStyleBackColor = true;
             this.btn_AddFood.Click += new System.EventHandler(this.btn_AddFood_Click);
             // 
+            // lbl_password
+            // 
+            this.lbl_password.AutoSize = true;
+            this.lbl_password.Location = new System.Drawing.Point(35, 112);
+            this.lbl_password.Name = "lbl_password";
+            this.lbl_password.Size = new System.Drawing.Size(78, 20);
+            this.lbl_password.TabIndex = 34;
+            this.lbl_password.Text = "Password";
+            // 
+            // tb_Password
+            // 
+            this.tb_Password.Location = new System.Drawing.Point(161, 106);
+            this.tb_Password.Name = "tb_Password";
+            this.tb_Password.Size = new System.Drawing.Size(635, 26);
+            this.tb_Password.TabIndex = 35;
+            // 
             // Send_Mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 333);
+            this.ClientSize = new System.Drawing.Size(831, 392);
+            this.Controls.Add(this.tb_Password);
+            this.Controls.Add(this.lbl_password);
             this.Controls.Add(this.btn_AddFood);
             this.Controls.Add(this.tb_tenmonan);
             this.Controls.Add(this.label2);
@@ -163,5 +183,7 @@
         private System.Windows.Forms.TextBox tb_tenmonan;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_AddFood;
+        private System.Windows.Forms.Label lbl_password;
+        private System.Windows.Forms.TextBox tb_Password;
     }
 }
