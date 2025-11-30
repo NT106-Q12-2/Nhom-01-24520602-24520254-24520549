@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb_Subject = new System.Windows.Forms.TextBox();
             this.btn_Send = new System.Windows.Forms.Button();
-            this.lbl_Subject = new System.Windows.Forms.Label();
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.lbl_Name = new System.Windows.Forms.Label();
             this.tb_EmailSender = new System.Windows.Forms.TextBox();
@@ -39,133 +37,114 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_tenmonan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_quyenhan = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btn_AddFood = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // tb_Subject
-            // 
-            this.tb_Subject.Location = new System.Drawing.Point(143, 129);
-            this.tb_Subject.Name = "tb_Subject";
-            this.tb_Subject.Size = new System.Drawing.Size(565, 22);
-            this.tb_Subject.TabIndex = 28;
             // 
             // btn_Send
             // 
-            this.btn_Send.Location = new System.Drawing.Point(579, 306);
+            this.btn_Send.Location = new System.Drawing.Point(649, 256);
+            this.btn_Send.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Send.Name = "btn_Send";
-            this.btn_Send.Size = new System.Drawing.Size(129, 45);
+            this.btn_Send.Size = new System.Drawing.Size(145, 56);
             this.btn_Send.TabIndex = 23;
             this.btn_Send.Text = "Send";
             this.btn_Send.UseVisualStyleBackColor = true;
-            // 
-            // lbl_Subject
-            // 
-            this.lbl_Subject.AutoSize = true;
-            this.lbl_Subject.Location = new System.Drawing.Point(31, 135);
-            this.lbl_Subject.Name = "lbl_Subject";
-            this.lbl_Subject.Size = new System.Drawing.Size(52, 16);
-            this.lbl_Subject.TabIndex = 18;
-            this.lbl_Subject.Text = "Subject";
+            this.btn_Send.Click += new System.EventHandler(this.btn_Send_Click);
             // 
             // tb_Name
             // 
-            this.tb_Name.Location = new System.Drawing.Point(143, 85);
+            this.tb_Name.Location = new System.Drawing.Point(161, 106);
+            this.tb_Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_Name.Name = "tb_Name";
-            this.tb_Name.Size = new System.Drawing.Size(565, 22);
+            this.tb_Name.Size = new System.Drawing.Size(635, 26);
             this.tb_Name.TabIndex = 26;
             // 
             // lbl_Name
             // 
             this.lbl_Name.AutoSize = true;
-            this.lbl_Name.Location = new System.Drawing.Point(31, 88);
+            this.lbl_Name.Location = new System.Drawing.Point(35, 110);
             this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(44, 16);
+            this.lbl_Name.Size = new System.Drawing.Size(51, 20);
             this.lbl_Name.TabIndex = 16;
             this.lbl_Name.Text = "Name";
             // 
             // tb_EmailSender
             // 
-            this.tb_EmailSender.Location = new System.Drawing.Point(143, 40);
+            this.tb_EmailSender.Location = new System.Drawing.Point(161, 50);
+            this.tb_EmailSender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_EmailSender.Name = "tb_EmailSender";
-            this.tb_EmailSender.Size = new System.Drawing.Size(565, 22);
+            this.tb_EmailSender.Size = new System.Drawing.Size(635, 26);
             this.tb_EmailSender.TabIndex = 25;
             // 
             // lbl_Sender
             // 
             this.lbl_Sender.AutoSize = true;
-            this.lbl_Sender.Location = new System.Drawing.Point(31, 43);
+            this.lbl_Sender.Location = new System.Drawing.Point(35, 54);
             this.lbl_Sender.Name = "lbl_Sender";
-            this.lbl_Sender.Size = new System.Drawing.Size(38, 16);
+            this.lbl_Sender.Size = new System.Drawing.Size(46, 20);
             this.lbl_Sender.TabIndex = 15;
             this.lbl_Sender.Text = "From";
             // 
             // tb_link
             // 
-            this.tb_link.Location = new System.Drawing.Point(143, 221);
+            this.tb_link.Location = new System.Drawing.Point(161, 207);
+            this.tb_link.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_link.Name = "tb_link";
-            this.tb_link.Size = new System.Drawing.Size(565, 22);
+            this.tb_link.Size = new System.Drawing.Size(635, 26);
             this.tb_link.TabIndex = 30;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 224);
+            this.label1.Location = new System.Drawing.Point(35, 213);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 16);
+            this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 29;
             this.label1.Text = "Link hình ảnh";
             // 
             // tb_tenmonan
             // 
-            this.tb_tenmonan.Location = new System.Drawing.Point(143, 174);
+            this.tb_tenmonan.Location = new System.Drawing.Point(161, 160);
+            this.tb_tenmonan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb_tenmonan.Name = "tb_tenmonan";
-            this.tb_tenmonan.Size = new System.Drawing.Size(565, 22);
+            this.tb_tenmonan.Size = new System.Drawing.Size(635, 26);
             this.tb_tenmonan.TabIndex = 32;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 177);
+            this.label2.Location = new System.Drawing.Point(35, 160);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 16);
+            this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 31;
             this.label2.Text = "Tên món ăn";
             // 
-            // tb_quyenhan
+            // btn_AddFood
             // 
-            this.tb_quyenhan.Location = new System.Drawing.Point(143, 267);
-            this.tb_quyenhan.Name = "tb_quyenhan";
-            this.tb_quyenhan.Size = new System.Drawing.Size(565, 22);
-            this.tb_quyenhan.TabIndex = 34;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 270);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 16);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "Quyền hạn";
+            this.btn_AddFood.Location = new System.Drawing.Point(481, 256);
+            this.btn_AddFood.Name = "btn_AddFood";
+            this.btn_AddFood.Size = new System.Drawing.Size(145, 56);
+            this.btn_AddFood.TabIndex = 33;
+            this.btn_AddFood.Text = "Add";
+            this.btn_AddFood.UseVisualStyleBackColor = true;
+            this.btn_AddFood.Click += new System.EventHandler(this.btn_AddFood_Click);
             // 
             // Send_Mail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 360);
-            this.Controls.Add(this.tb_quyenhan);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(831, 333);
+            this.Controls.Add(this.btn_AddFood);
             this.Controls.Add(this.tb_tenmonan);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_link);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tb_Subject);
             this.Controls.Add(this.tb_Name);
             this.Controls.Add(this.tb_EmailSender);
             this.Controls.Add(this.btn_Send);
-            this.Controls.Add(this.lbl_Subject);
             this.Controls.Add(this.lbl_Name);
             this.Controls.Add(this.lbl_Sender);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Send_Mail";
             this.Text = "Send_Mail";
             this.ResumeLayout(false);
@@ -174,9 +153,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox tb_Subject;
         private System.Windows.Forms.Button btn_Send;
-        private System.Windows.Forms.Label lbl_Subject;
         private System.Windows.Forms.TextBox tb_Name;
         private System.Windows.Forms.Label lbl_Name;
         private System.Windows.Forms.TextBox tb_EmailSender;
@@ -185,7 +162,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_tenmonan;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_quyenhan;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_AddFood;
     }
 }
