@@ -35,17 +35,19 @@ namespace Bai5
             this.label1 = new System.Windows.Forms.Label();
             this.btn_themmon = new System.Windows.Forms.Button();
             this.btn_chonmon = new System.Windows.Forms.Button();
-            this.ptb_ketquamonan = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_ketquamonan)).BeginInit();
+            this.gb_KetQua = new System.Windows.Forms.GroupBox();
+            this.tb_KetQua = new System.Windows.Forms.TextBox();
+            this.ptb_KetQua = new System.Windows.Forms.PictureBox();
+            this.gb_KetQua.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_KetQua)).BeginInit();
             this.SuspendLayout();
             // 
             // lv_dsmonan
             // 
             this.lv_dsmonan.HideSelection = false;
             this.lv_dsmonan.Location = new System.Drawing.Point(10, 44);
-            this.lv_dsmonan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lv_dsmonan.Margin = new System.Windows.Forms.Padding(2);
             this.lv_dsmonan.Name = "lv_dsmonan";
             this.lv_dsmonan.Size = new System.Drawing.Size(227, 305);
             this.lv_dsmonan.TabIndex = 0;
@@ -67,50 +69,26 @@ namespace Bai5
             this.btn_themmon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_themmon.ForeColor = System.Drawing.Color.ForestGreen;
             this.btn_themmon.Location = new System.Drawing.Point(241, 46);
-            this.btn_themmon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_themmon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_themmon.Name = "btn_themmon";
-            this.btn_themmon.Size = new System.Drawing.Size(187, 104);
+            this.btn_themmon.Size = new System.Drawing.Size(187, 137);
             this.btn_themmon.TabIndex = 8;
             this.btn_themmon.Text = "Thêm món ăn";
             this.btn_themmon.UseVisualStyleBackColor = true;
             this.btn_themmon.Click += new System.EventHandler(this.btn_themmon_Click);
             // 
-            // btn_xemmon
-            // 
-            this.btn_xemmon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xemmon.ForeColor = System.Drawing.Color.Orange;
-            this.btn_xemmon.Location = new System.Drawing.Point(241, 155);
-            this.btn_xemmon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn_xemmon.Name = "btn_xemmon";
-            this.btn_xemmon.Size = new System.Drawing.Size(187, 97);
-            this.btn_xemmon.TabIndex = 9;
-            this.btn_xemmon.Text = "Xem danh sách";
-            this.btn_xemmon.UseVisualStyleBackColor = true;
-            this.btn_xemmon.Click += new System.EventHandler(this.btn_xemmon_Click);
-            // 
             // btn_chonmon
             // 
             this.btn_chonmon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_chonmon.ForeColor = System.Drawing.Color.Red;
-            this.btn_chonmon.Location = new System.Drawing.Point(241, 257);
-            this.btn_chonmon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_chonmon.Location = new System.Drawing.Point(241, 206);
+            this.btn_chonmon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_chonmon.Name = "btn_chonmon";
-            this.btn_chonmon.Size = new System.Drawing.Size(187, 89);
+            this.btn_chonmon.Size = new System.Drawing.Size(187, 140);
             this.btn_chonmon.TabIndex = 10;
             this.btn_chonmon.Text = "Chọn món ăn";
             this.btn_chonmon.UseVisualStyleBackColor = true;
             this.btn_chonmon.Click += new System.EventHandler(this.btn_chonmon_Click);
-            // 
-            // ptb_ketquamonan
-            // 
-            this.ptb_ketquamonan.BackColor = System.Drawing.Color.White;
-            this.ptb_ketquamonan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptb_ketquamonan.Location = new System.Drawing.Point(432, 46);
-            this.ptb_ketquamonan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ptb_ketquamonan.Name = "ptb_ketquamonan";
-            this.ptb_ketquamonan.Size = new System.Drawing.Size(243, 300);
-            this.ptb_ketquamonan.TabIndex = 13;
-            this.ptb_ketquamonan.TabStop = false;
             // 
             // label6
             // 
@@ -124,17 +102,35 @@ namespace Bai5
             this.label6.TabIndex = 14;
             this.label6.Text = "Danh sách món ăn";
             // 
-            // label7
+            // gb_KetQua
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(472, 19);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(166, 25);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Hình ảnh món ăn";
+            this.gb_KetQua.Controls.Add(this.ptb_KetQua);
+            this.gb_KetQua.Controls.Add(this.tb_KetQua);
+            this.gb_KetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_KetQua.Location = new System.Drawing.Point(433, 37);
+            this.gb_KetQua.Name = "gb_KetQua";
+            this.gb_KetQua.Size = new System.Drawing.Size(241, 307);
+            this.gb_KetQua.TabIndex = 15;
+            this.gb_KetQua.TabStop = false;
+            this.gb_KetQua.Text = "Kết Quả";
+            // 
+            // tb_KetQua
+            // 
+            this.tb_KetQua.BackColor = System.Drawing.Color.Silver;
+            this.tb_KetQua.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_KetQua.Location = new System.Drawing.Point(6, 28);
+            this.tb_KetQua.Multiline = true;
+            this.tb_KetQua.Name = "tb_KetQua";
+            this.tb_KetQua.Size = new System.Drawing.Size(229, 109);
+            this.tb_KetQua.TabIndex = 16;
+            // 
+            // ptb_KetQua
+            // 
+            this.ptb_KetQua.Location = new System.Drawing.Point(6, 143);
+            this.ptb_KetQua.Name = "ptb_KetQua";
+            this.ptb_KetQua.Size = new System.Drawing.Size(229, 149);
+            this.ptb_KetQua.TabIndex = 17;
+            this.ptb_KetQua.TabStop = false;
             // 
             // Hom_Nay_An_Gi
             // 
@@ -142,19 +138,20 @@ namespace Bai5
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(686, 356);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.gb_KetQua);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.ptb_ketquamonan);
             this.Controls.Add(this.btn_chonmon);
             this.Controls.Add(this.btn_themmon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lv_dsmonan);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Hom_Nay_An_Gi";
             this.Text = "Hôm Nay Ăn Gì";
             this.Load += new System.EventHandler(this.Hom_Nay_An_Gi_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_ketquamonan)).EndInit();
+            this.gb_KetQua.ResumeLayout(false);
+            this.gb_KetQua.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_KetQua)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,9 +162,10 @@ namespace Bai5
         private Label label1;
         private Button btn_themmon;
         private Button btn_chonmon;
-        private PictureBox ptb_ketquamonan;
         private Label label6;
-        private Label label7;
+        private GroupBox gb_KetQua;
+        private PictureBox ptb_KetQua;
+        private TextBox tb_KetQua;
     }
 }
 

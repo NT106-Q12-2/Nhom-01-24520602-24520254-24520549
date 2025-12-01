@@ -16,7 +16,7 @@ namespace Bai5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Send_Mail());
+            Application.Run(new Hom_Nay_An_Gi());
         }
     }
 }

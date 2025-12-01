@@ -171,11 +171,18 @@ namespace Bai5
 
         private void btn_themmon_Click(object sender, EventArgs e)
         {
-            // Đọc mail rồi gửi lên db
+            Send_Mail form = new Send_Mail();
+            form.Show();
         }
 
         private void btn_chonmon_Click(object sender, EventArgs e)
         {
+            if(ptb_KetQua.Image != null)
+            {
+                ptb_KetQua.Image = null;
+            }
+            tb_KetQua.Clear();
+
             using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
             {
                 connect.Open();
@@ -210,16 +217,16 @@ namespace Bai5
                         Food HomNay = foods[index];
                         try
                         {
-                            ptb_ketquamonan.Load(HomNay.Image);
-                            ptb_ketquamonan.SizeMode = PictureBoxSizeMode.Zoom;
+                            ptb_KetQua.Load(HomNay.Image);
+                            ptb_KetQua.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
                         }
-                        MessageBox.Show($"Món ăn hôm nay: {HomNay.FoodName}\n" +
-                                        $"Người cung cấp: {HomNay.NameNCC}"
-                        );
+                        tb_KetQua.Text += $"Món Ăn: {HomNay.FoodName}\r\n";
+                        tb_KetQua.Text += $"Người đóng góp: {HomNay.NameNCC}\r\n";
+                       
                     }
                 }
             }
