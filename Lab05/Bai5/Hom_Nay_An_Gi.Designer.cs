@@ -34,7 +34,6 @@ namespace Bai5
             this.lv_dsmonan = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_themmon = new System.Windows.Forms.Button();
-            this.btn_xemmon = new System.Windows.Forms.Button();
             this.btn_chonmon = new System.Windows.Forms.Button();
             this.ptb_ketquamonan = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -147,7 +146,6 @@ namespace Bai5
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ptb_ketquamonan);
             this.Controls.Add(this.btn_chonmon);
-            this.Controls.Add(this.btn_xemmon);
             this.Controls.Add(this.btn_themmon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lv_dsmonan);
@@ -166,7 +164,6 @@ namespace Bai5
         private ListView lv_dsmonan;
         private Label label1;
         private Button btn_themmon;
-        private Button btn_xemmon;
         private Button btn_chonmon;
         private PictureBox ptb_ketquamonan;
         private Label label6;

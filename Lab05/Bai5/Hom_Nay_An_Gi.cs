@@ -174,35 +174,6 @@ namespace Bai5
             // Đọc mail rồi gửi lên db
         }
 
-        private void btn_xemmon_Click(object sender, EventArgs e)
-        {
-            lv_dsmonan.Items.Clear();
-            lv_dsmonan.View = View.Details;
-            lv_dsmonan.FullRowSelect = true;
-            lv_dsmonan.GridLines = true;
-            lv_dsmonan.Columns.Add("Tên món ăn", 300);
-            lv_dsmonan.Columns.Add("Người cung cấp", 300);
-            lv_dsmonan.Columns.Add("Link hình ảnh", 800);
-            using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
-            {
-                connect.Open();
-                string selectData = "SELECT TenMonAn, HoVaTen, HinhAnh FROM MonAn JOIN NguoiDung ON MonAn.IDNCC = NguoiDung.IDNCC";
-                using (SQLiteCommand command = new SQLiteCommand(selectData, connect))
-                {
-                    using (SQLiteDataReader readData = command.ExecuteReader())
-                    {
-                        while (readData.Read())
-                        {
-                            ListViewItem item = new ListViewItem(readData["TenMonAn"].ToString());
-                            item.SubItems.Add(readData["HoVaTen"].ToString());
-                            item.SubItems.Add(readData["HinhAnh"].ToString());
-                            lv_dsmonan.Items.Add(item);
-                        }
-                    }
-                }                                                                                       
-            }
-        }
-                                                                                                                                                            
         private void btn_chonmon_Click(object sender, EventArgs e)
         {
             using (SQLiteConnection connect = new SQLiteConnection(ConnectionSQL))
