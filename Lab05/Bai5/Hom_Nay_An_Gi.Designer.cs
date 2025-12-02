@@ -37,8 +37,8 @@ namespace Bai5
             this.btn_chonmon = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.gb_KetQua = new System.Windows.Forms.GroupBox();
-            this.tb_KetQua = new System.Windows.Forms.TextBox();
             this.ptb_KetQua = new System.Windows.Forms.PictureBox();
+            this.tb_KetQua = new System.Windows.Forms.TextBox();
             this.gb_KetQua.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_KetQua)).BeginInit();
             this.SuspendLayout();
@@ -114,16 +114,6 @@ namespace Bai5
             this.gb_KetQua.TabStop = false;
             this.gb_KetQua.Text = "Kết Quả";
             // 
-            // tb_KetQua
-            // 
-            this.tb_KetQua.BackColor = System.Drawing.Color.Silver;
-            this.tb_KetQua.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_KetQua.Location = new System.Drawing.Point(6, 28);
-            this.tb_KetQua.Multiline = true;
-            this.tb_KetQua.Name = "tb_KetQua";
-            this.tb_KetQua.Size = new System.Drawing.Size(229, 109);
-            this.tb_KetQua.TabIndex = 16;
-            // 
             // ptb_KetQua
             // 
             this.ptb_KetQua.Location = new System.Drawing.Point(6, 143);
@@ -131,6 +121,17 @@ namespace Bai5
             this.ptb_KetQua.Size = new System.Drawing.Size(229, 149);
             this.ptb_KetQua.TabIndex = 17;
             this.ptb_KetQua.TabStop = false;
+            // 
+            // tb_KetQua
+            // 
+            this.tb_KetQua.BackColor = System.Drawing.Color.Silver;
+            this.tb_KetQua.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_KetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_KetQua.Location = new System.Drawing.Point(6, 28);
+            this.tb_KetQua.Multiline = true;
+            this.tb_KetQua.Name = "tb_KetQua";
+            this.tb_KetQua.Size = new System.Drawing.Size(229, 109);
+            this.tb_KetQua.TabIndex = 16;
             // 
             // Hom_Nay_An_Gi
             // 

@@ -24,6 +24,11 @@ namespace Bai5
         public Hom_Nay_An_Gi()
         {
             InitializeComponent();
+            lv_dsmonan.Items.Clear();
+            lv_dsmonan.Columns.Clear();
+            lv_dsmonan.View = View.Details;
+            lv_dsmonan.Columns.Add("Tên Món", 100);
+            lv_dsmonan.Columns.Add("Người đóng góp", 100);
             CapNhatMon = new Timer();
             CapNhatMon.Interval = 10000;
             CapNhatMon.Tick += CapNhatMon_Tick;
@@ -67,7 +72,16 @@ namespace Bai5
                     foreach(var mail in mails)
                     {
                         var message = inbox.GetMessage(mail);
-                        string NguoiGui = message.From.ToString();
+                        string NguoiGui = "Người ẩn danh";
+                        var sender = message.From.Mailboxes.FirstOrDefault();
+
+                        if (sender != null)
+                        {
+                            if (!string.IsNullOrEmpty(sender.Name))
+                            {
+                                NguoiGui = sender.Name;
+                            }
+                        }
                         string NoiDung = message.TextBody;
 
                         string[] lines = NoiDung.Split(new [] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -91,7 +105,9 @@ namespace Bai5
                 }
             }
             catch(Exception ex)
-            {}
+            {
+
+            }
             return IsUpdate;
         }
 
@@ -135,9 +151,9 @@ namespace Bai5
 
         private void LoadMonAn()
         {
-            lv_dsmonan.Clear();
+            lv_dsmonan.Items.Clear();
 
-            using(SQLiteConnection conn = new SQLiteConnection(ConnectionSQL))
+            using (SQLiteConnection conn = new SQLiteConnection(ConnectionSQL))
             {
                 conn.Open();
                 string query = @"SELECT m.TenMonAn, m.HinhAnh, n.HoVaTen FROM MonAn m LEFT JOIN NguoiDung n ON m.IDNCC = n.IDNCC";
