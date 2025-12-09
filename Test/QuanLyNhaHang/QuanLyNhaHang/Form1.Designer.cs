@@ -47,6 +47,7 @@
             btn_Connect.TabIndex = 0;
             btn_Connect.Text = "Connect";
             btn_Connect.UseVisualStyleBackColor = true;
+            btn_Connect.Click += btn_Connect_Click;
             // 
             // lbl_Status
             // 
