@@ -19,6 +19,15 @@ namespace QuanLyNhaHang
         public Server()
         {
             InitializeComponent();
+            DataTable dataTable = new DataTable();
+
+            // Thêm các cột vào DataTable
+            dataTable.Columns.Add("Table", typeof(int));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Qty", typeof(int));
+
+            // Liên kết DataTable với DataGridView
+            dgv_Menu.DataSource = dataTable;
         }
 
         List<TcpClient> clients = new List<TcpClient>();
@@ -75,6 +84,12 @@ namespace QuanLyNhaHang
                             Send_Menu(client,ns);
                             AddMessage($"Receive from client");
                             break;
+                        case "ORDER":
+                            HandleOrder(response);
+                            break;
+                        case "QUIT":
+                            CloseConnection(client,ns);
+                            break;
 
                     }
                 }
@@ -84,6 +99,27 @@ namespace QuanLyNhaHang
               
             }
         }
+
+        private void HandleOrder(Dictionary<string, JsonElement> response)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CloseConnection(TcpClient client,NetworkStream ns)
+        {
+            if (client.Connected)
+            {
+                clients.Remove(client);
+                var data = new
+                {
+                    action = "QUIT_SUCCESS"
+                };
+
+                StreamWriter sw = new StreamWriter(ns) { AutoFlush =true };
+                sw.WriteLine(JsonSerializer.Serialize(data));
+            }
+        }
+
 
         private void AddMessage(string v)
         {
@@ -133,6 +169,7 @@ namespace QuanLyNhaHang
             Thread threadServer = new Thread(StartServer);
             threadServer.IsBackground = true;
             threadServer.Start();
+            lbl_Status.Text = "Listening on 8080";
         }
 
         private void btn_Charge_Click(object sender, EventArgs e)
