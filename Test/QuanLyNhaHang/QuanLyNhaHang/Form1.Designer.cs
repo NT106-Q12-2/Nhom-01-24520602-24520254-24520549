@@ -41,9 +41,10 @@
             // 
             // btn_Connect
             // 
-            btn_Connect.Location = new Point(47, 49);
+            btn_Connect.Location = new Point(38, 39);
+            btn_Connect.Margin = new Padding(2, 2, 2, 2);
             btn_Connect.Name = "btn_Connect";
-            btn_Connect.Size = new Size(129, 49);
+            btn_Connect.Size = new Size(103, 39);
             btn_Connect.TabIndex = 0;
             btn_Connect.Text = "Connect";
             btn_Connect.UseVisualStyleBackColor = true;
@@ -52,69 +53,77 @@
             // lbl_Status
             // 
             lbl_Status.AutoSize = true;
-            lbl_Status.Location = new Point(330, 61);
+            lbl_Status.Location = new Point(264, 49);
+            lbl_Status.Margin = new Padding(2, 0, 2, 0);
             lbl_Status.Name = "lbl_Status";
-            lbl_Status.Size = new Size(59, 25);
+            lbl_Status.Size = new Size(47, 20);
             lbl_Status.TabIndex = 1;
             lbl_Status.Text = "status";
             // 
             // dgv_Menu
             // 
             dgv_Menu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_Menu.Location = new Point(47, 104);
+            dgv_Menu.Location = new Point(38, 83);
+            dgv_Menu.Margin = new Padding(2, 2, 2, 2);
             dgv_Menu.Name = "dgv_Menu";
             dgv_Menu.RowHeadersWidth = 62;
-            dgv_Menu.Size = new Size(553, 261);
+            dgv_Menu.Size = new Size(442, 209);
             dgv_Menu.TabIndex = 2;
             // 
             // lbl_Table
             // 
             lbl_Table.AutoSize = true;
-            lbl_Table.Location = new Point(60, 420);
+            lbl_Table.Location = new Point(48, 336);
+            lbl_Table.Margin = new Padding(2, 0, 2, 0);
             lbl_Table.Name = "lbl_Table";
-            lbl_Table.Size = new Size(52, 25);
+            lbl_Table.Size = new Size(44, 20);
             lbl_Table.TabIndex = 3;
             lbl_Table.Text = "Table";
             // 
             // lbl_Gia
             // 
             lbl_Gia.AutoSize = true;
-            lbl_Gia.Location = new Point(60, 484);
+            lbl_Gia.Location = new Point(48, 387);
+            lbl_Gia.Margin = new Padding(2, 0, 2, 0);
             lbl_Gia.Name = "lbl_Gia";
-            lbl_Gia.Size = new Size(36, 25);
+            lbl_Gia.Size = new Size(29, 20);
             lbl_Gia.TabIndex = 4;
             lbl_Gia.Text = "OK";
             // 
             // btn_Order
             // 
-            btn_Order.Location = new Point(321, 411);
+            btn_Order.Location = new Point(257, 329);
+            btn_Order.Margin = new Padding(2, 2, 2, 2);
             btn_Order.Name = "btn_Order";
-            btn_Order.Size = new Size(130, 34);
+            btn_Order.Size = new Size(104, 27);
             btn_Order.TabIndex = 5;
             btn_Order.Text = "Order";
             btn_Order.UseVisualStyleBackColor = true;
+            btn_Order.Click += btn_Order_Click;
             // 
             // btn_Quit
             // 
-            btn_Quit.Location = new Point(470, 410);
+            btn_Quit.Location = new Point(376, 328);
+            btn_Quit.Margin = new Padding(2, 2, 2, 2);
             btn_Quit.Name = "btn_Quit";
-            btn_Quit.Size = new Size(130, 34);
+            btn_Quit.Size = new Size(104, 27);
             btn_Quit.TabIndex = 6;
             btn_Quit.Text = "Quit";
             btn_Quit.UseVisualStyleBackColor = true;
             // 
             // tb_Table
             // 
-            tb_Table.Location = new Point(143, 413);
+            tb_Table.Location = new Point(114, 330);
+            tb_Table.Margin = new Padding(2, 2, 2, 2);
             tb_Table.Name = "tb_Table";
-            tb_Table.Size = new Size(150, 31);
+            tb_Table.Size = new Size(121, 27);
             tb_Table.TabIndex = 7;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(667, 559);
+            ClientSize = new Size(534, 447);
             Controls.Add(tb_Table);
             Controls.Add(btn_Quit);
             Controls.Add(btn_Order);
@@ -123,6 +132,7 @@
             Controls.Add(dgv_Menu);
             Controls.Add(lbl_Status);
             Controls.Add(btn_Connect);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dgv_Menu).EndInit();

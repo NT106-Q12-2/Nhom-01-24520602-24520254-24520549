@@ -103,7 +103,7 @@ namespace QuanLyNhaHang
 
         private void HandleOrder(Dictionary<string, JsonElement> response)
         {
-            throw new NotImplementedException();
+        
         }
 
         private void CloseConnection(TcpClient client,NetworkStream ns)

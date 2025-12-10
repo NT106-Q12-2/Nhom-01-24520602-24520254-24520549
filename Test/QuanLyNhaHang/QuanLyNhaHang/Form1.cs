@@ -66,7 +66,7 @@ namespace QuanLyNhaHang
 
                     var respone = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(data);
 
-         
+
 
                     if (!respone.ContainsKey("action")) return;
 
@@ -75,6 +75,7 @@ namespace QuanLyNhaHang
                         case "GET_MENU":
                             ThemMonAnVaoDanhSach(respone);
                             break;
+
 
                     }
                 }
@@ -88,8 +89,8 @@ namespace QuanLyNhaHang
 
         void ThemMonAnVaoDanhSach(Dictionary<string, JsonElement> MonAn)
         {
-           
-            dataTable.Rows.Add(MonAn["Tien"].GetString(), MonAn["Ten"].GetString(), null );
+
+            dataTable.Rows.Add(MonAn["Tien"].GetString(), MonAn["Ten"].GetString(), null);
         }
 
         private void btn_Quit_Click(object sender, EventArgs e)
@@ -103,6 +104,21 @@ namespace QuanLyNhaHang
             client.Close();
             reader.Close();
             writer.Close();
+        }
+
+        private void btn_Order_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow Row in dgv_Menu.Rows)
+            {
+                var data = new
+                {
+                    STT = tb_Table.Text,
+                    Name = Row.Cells["Name"].Value.ToString(),
+                    Tien = Convert.ToInt32(Row.Cells["Price"].Value.ToString()),
+                    Qty = Convert.ToInt32(Row.Cells["Qty"].Value.ToString()),
+                };
+                writer.WriteLine(JsonSerializer.Serialize(data));
+            }
         }
     }
 }
