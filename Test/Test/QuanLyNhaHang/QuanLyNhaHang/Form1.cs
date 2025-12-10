@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System.Data;
+using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace QuanLyNhaHang
 {
@@ -9,15 +11,24 @@ namespace QuanLyNhaHang
         public Form1()
         {
             InitializeComponent();
+            dataTable = new DataTable();
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Price", typeof(string));
+            dataTable.Columns.Add("Qty", typeof(int));
+
+            // Liên kết DataTable với DataGridView
+            dgv_Menu.DataSource = dataTable;
         }
 
         TcpClient client = new TcpClient();
         StreamReader reader;
         StreamWriter writer;
-        Dictionary<int, Dictionary<string, int>> DanhSachMonAn = new Dictionary<int, Dictionary<string, int>>();
+        DataTable dataTable;
         private void btn_Connect_Click(object sender, EventArgs e)
         {
+
             IPEndPoint Ipe = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
+
 
             try
             {
@@ -35,7 +46,7 @@ namespace QuanLyNhaHang
 
             var Packet = new
             {
-                action = "MENU",
+                action = "MENU"
             };
 
             writer.WriteLine(JsonSerializer.Serialize(Packet));
@@ -53,8 +64,9 @@ namespace QuanLyNhaHang
                 {
                     string data = reader.ReadLine();
 
-                    
-                    var respone = JsonSerializer.Deserialize<Dictionary<string,JsonElement>>(data);
+                    var respone = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(data);
+
+         
 
                     if (!respone.ContainsKey("action")) return;
 
@@ -63,21 +75,34 @@ namespace QuanLyNhaHang
                         case "GET_MENU":
                             ThemMonAnVaoDanhSach(respone);
                             break;
-                               
+
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi trong quá trình kết nối");
+                MessageBox.Show($"Lỗi trong quá trình kết nối {ex.Message}");
                 return;
             }
         }
 
         void ThemMonAnVaoDanhSach(Dictionary<string, JsonElement> MonAn)
         {
-            //DanhSachMonAn.Add(MonAn["STT"].GetInt32(), MonAn["Ten"].GetString(), MonAn["Tien"].GetInt32());
+           
+            dataTable.Rows.Add(MonAn["Tien"].GetString(), MonAn["Ten"].GetString(), null );
         }
 
+        private void btn_Quit_Click(object sender, EventArgs e)
+        {
+            var Packet = new
+            {
+                action = "QUIT"
+            };
+
+            writer.WriteLine(JsonSerializer.Serialize(Packet));
+            client.Close();
+            reader.Close();
+            writer.Close();
+        }
     }
 }

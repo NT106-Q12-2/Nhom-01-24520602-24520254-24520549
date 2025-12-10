@@ -115,10 +115,10 @@ namespace QuanLyNhaHang
                             Tien = words[1],
                             Ten = words[2]
                         };
+                       
                         stream = client.GetStream();
-                        string json = JsonSerializer.Serialize(Data);
-                        byte[] Sent = Encoding.UTF8.GetBytes(json);
-                        stream.Write(Sent, 0, Sent.Length);
+                        StreamWriter sw = new StreamWriter(stream) { AutoFlush = true };
+                        sw.WriteLine(JsonSerializer.Serialize(Data));
                     }
                 }
             }
