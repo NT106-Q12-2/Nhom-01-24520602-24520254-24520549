@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,8 +21,7 @@ namespace QuanLyNhaHang
             InitializeComponent();
         }
 
-        Dictionary<TcpClient, string> clientNames = new Dictionary<TcpClient, string>();
-        Dictionary<TcpClient, StreamWriter> clientWriters = new Dictionary<TcpClient, StreamWriter>();
+        List<TcpClient> clients = new List<TcpClient>();
         TcpListener server;
 
         void StartServer()
@@ -47,8 +48,84 @@ namespace QuanLyNhaHang
         }
 
         private void HandleClient(TcpClient client)
-        { 
-                    
+        {
+            StreamReader reader = null;
+            StreamWriter writer = null;
+
+            try
+            {
+                NetworkStream ns = client.GetStream();
+                reader = new StreamReader(ns);
+                writer = new StreamWriter(ns) { AutoFlush = true };
+                while (client.Connected)
+                {
+                    string jsonstring = reader.ReadLine();
+                    if (jsonstring == null) break;
+
+                    var response = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonstring);
+
+                    if (!response.ContainsKey("action")) continue;
+
+                    string Action = response["action"].GetString();
+
+                    switch (Action)
+                    {
+                        case "MENU":
+                            clients.Add(client);
+                            Send_Menu(client,ns);
+                            AddMessage($"Receive from client");
+                            break;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+              
+            }
+        }
+
+        private void AddMessage(string v)
+        {
+            if (rtb_Message.InvokeRequired)
+            {
+                rtb_Message.Invoke(new Action(() => AddMessage(v)));
+            }
+            else
+            {
+                rtb_Message.Text += $"{v}\r\n";
+            }
+        }
+
+        private void Send_Menu(TcpClient client, NetworkStream stream)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader("menu.txt"))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] words = line.Split(";");
+
+                        var Data = new
+                        {
+                            action = "GET_MENU",
+                            STT = words[0],
+                            Tien = words[1],
+                            Ten = words[2]
+                        };
+                        stream = client.GetStream();
+                        string json = JsonSerializer.Serialize(Data);
+                        byte[] Sent = Encoding.UTF8.GetBytes(json);
+                        stream.Write(Sent, 0, Sent.Length);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
