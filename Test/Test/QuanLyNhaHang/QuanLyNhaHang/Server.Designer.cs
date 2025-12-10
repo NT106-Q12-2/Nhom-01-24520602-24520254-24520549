@@ -59,7 +59,7 @@
             label1.Name = "label1";
             label1.Size = new Size(52, 21);
             label1.TabIndex = 1;
-            label1.Text = "Status";
+            label1.Text = "label1";
             // 
             // lbl_Status
             // 
@@ -67,9 +67,9 @@
             lbl_Status.Font = new Font("Segoe UI", 12F);
             lbl_Status.Location = new Point(241, 41);
             lbl_Status.Name = "lbl_Status";
-            lbl_Status.Size = new Size(92, 21);
+            lbl_Status.Size = new Size(52, 21);
             lbl_Status.TabIndex = 2;
-            lbl_Status.Text = "No Connect";
+            lbl_Status.Text = "label2";
             // 
             // label2
             // 
