@@ -35,7 +35,7 @@
             tb_Table = new TextBox();
             btn_Charge = new Button();
             label3 = new Label();
-            textBox1 = new TextBox();
+            tb_Sum = new TextBox();
             dgv_Menu = new DataGridView();
             rtb_Message = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dgv_Menu).BeginInit();
@@ -59,7 +59,7 @@
             label1.Name = "label1";
             label1.Size = new Size(52, 21);
             label1.TabIndex = 1;
-            label1.Text = "label1";
+            label1.Text = "Status";
             // 
             // lbl_Status
             // 
@@ -67,9 +67,9 @@
             lbl_Status.Font = new Font("Segoe UI", 12F);
             lbl_Status.Location = new Point(241, 41);
             lbl_Status.Name = "lbl_Status";
-            lbl_Status.Size = new Size(52, 21);
+            lbl_Status.Size = new Size(92, 21);
             lbl_Status.TabIndex = 2;
-            lbl_Status.Text = "label2";
+            lbl_Status.Text = "No Connect";
             // 
             // label2
             // 
@@ -108,12 +108,12 @@
             label3.TabIndex = 6;
             label3.Text = "Amount";
             // 
-            // textBox1
+            // tb_Sum
             // 
-            textBox1.Location = new Point(664, 258);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 7;
+            tb_Sum.Location = new Point(664, 258);
+            tb_Sum.Name = "tb_Sum";
+            tb_Sum.Size = new Size(100, 23);
+            tb_Sum.TabIndex = 7;
             // 
             // dgv_Menu
             // 
@@ -138,7 +138,7 @@
             ClientSize = new Size(800, 504);
             Controls.Add(rtb_Message);
             Controls.Add(dgv_Menu);
-            Controls.Add(textBox1);
+            Controls.Add(tb_Sum);
             Controls.Add(label3);
             Controls.Add(btn_Charge);
             Controls.Add(tb_Table);
@@ -162,7 +162,7 @@
         private TextBox tb_Table;
         private Button btn_Charge;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox tb_Sum;
         private DataGridView dgv_Menu;
         private RichTextBox rtb_Message;
     }

@@ -102,7 +102,6 @@
             btn_Quit.TabIndex = 6;
             btn_Quit.Text = "Quit";
             btn_Quit.UseVisualStyleBackColor = true;
-            btn_Quit.Click += btn_Quit_Click;
             // 
             // tb_Table
             // 

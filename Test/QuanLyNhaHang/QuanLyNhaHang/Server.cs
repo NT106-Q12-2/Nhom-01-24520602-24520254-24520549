@@ -19,6 +19,16 @@ namespace QuanLyNhaHang
         public Server()
         {
             InitializeComponent();
+            DataTable dataTable = new DataTable();
+
+            // Thêm các cột vào DataTable
+            dataTable.Columns.Add("Table", typeof(string));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Qty", typeof(int));
+            dataTable.Columns.Add("Total", typeof(int));
+
+            // Liên kết DataTable với DataGridView
+            dgv_Menu.DataSource = dataTable;
         }
 
         List<TcpClient> clients = new List<TcpClient>();
@@ -75,6 +85,12 @@ namespace QuanLyNhaHang
                             Send_Menu(client,ns);
                             AddMessage($"Receive from client");
                             break;
+                        case "ORDER":
+                            HandleOrder(response);
+                            break;
+                        case "QUIT":
+                            CloseConnection(client,ns);
+                            break;
 
                     }
                 }
@@ -84,6 +100,27 @@ namespace QuanLyNhaHang
               
             }
         }
+
+        private void HandleOrder(Dictionary<string, JsonElement> response)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CloseConnection(TcpClient client,NetworkStream ns)
+        {
+            if (client.Connected)
+            {
+                clients.Remove(client);
+                var data = new
+                {
+                    action = "QUIT_SUCCESS"
+                };
+
+                StreamWriter sw = new StreamWriter(ns) { AutoFlush =true };
+                sw.WriteLine(JsonSerializer.Serialize(data));
+            }
+        }
+
 
         private void AddMessage(string v)
         {
@@ -115,10 +152,9 @@ namespace QuanLyNhaHang
                             Tien = words[1],
                             Ten = words[2]
                         };
-                       
                         stream = client.GetStream();
-                        StreamWriter sw = new StreamWriter(stream) { AutoFlush = true };
-                        sw.WriteLine(JsonSerializer.Serialize(Data));
+                        StreamWriter sw = new StreamWriter(stream) { AutoFlush =true };
+                        sw.WriteLine(JsonSerializer.Serialize(Data));                   
                     }
                 }
             }
@@ -133,11 +169,26 @@ namespace QuanLyNhaHang
             Thread threadServer = new Thread(StartServer);
             threadServer.IsBackground = true;
             threadServer.Start();
+            lbl_Status.Text = "Listening on 8080";
         }
 
         private void btn_Charge_Click(object sender, EventArgs e)
         {
-
+            int sum = 0;
+            string table = tb_Table.Text;
+            foreach(DataGridViewRow row in dgv_Menu.Rows)
+            {
+                if (!row.IsNewRow) // Kiểm tra nếu không phải là dòng mới
+                {
+                    string data = row.Cells[0].Value.ToString(); // Lấy giá trị từ ô đầu tiên của hàng
+                    if (table == data)
+                    {
+                        sum += (Convert.ToInt32(row.Cells[2].Value) * (Convert.ToInt32(row.Cells[3].Value)));
+                    }
+                }
+            }
+            tb_Sum.Text = sum.ToString();
+        
         }
     }
 }
