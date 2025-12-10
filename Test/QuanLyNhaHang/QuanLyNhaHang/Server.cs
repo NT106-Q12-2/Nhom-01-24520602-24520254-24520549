@@ -178,14 +178,14 @@ namespace QuanLyNhaHang
             string table = tb_Table.Text;
             foreach(DataGridViewRow row in dgv_Menu.Rows)
             {
-                if (!row.IsNewRow) // Kiểm tra nếu không phải là dòng mới
-                {
-                    string data = row.Cells[0].Value.ToString(); // Lấy giá trị từ ô đầu tiên của hàng
-                    if (table == data)
-                    {
-                        sum += (Convert.ToInt32(row.Cells[2].Value) * (Convert.ToInt32(row.Cells[3].Value)));
-                    }
-                }
+            if (!row.IsNewRow) // Kiểm tra nếu không phải là dòng mới
+            {
+            string data = row.Cells[0].Value.ToString(); // Lấy giá trị từ ô đầu tiên của hàng
+            if (table == data)
+            {
+                sum += (Convert.ToInt32(row.Cells[3].Value));
+            }
+            }
             }
             tb_Sum.Text = sum.ToString();
         
